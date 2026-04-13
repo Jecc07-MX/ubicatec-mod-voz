@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Banner Móvil - UBICATEC</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            background: #f5f5f5;
+        }
+        
+        /* Simular el hero */
+        .hero-section {
+            background: linear-gradient(135deg, #0c3870 0%, #1e3a8a 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Estilos del banner (copiados del index.html) */
+        .eventos-banner {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 15px 0;
+            position: relative;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+            animation: blink 3s infinite;
+            border-top: 3px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        @keyframes blink {
+            0%, 90%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            5%, 85% {
+                opacity: 0.8;
+                transform: scale(1.02);
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+        
+        .col-md-8, .col-sm-12 {
+            flex: 0 0 66.666667%;
+            max-width: 66.666667%;
+            padding: 0 15px;
+        }
+        
+        .col-md-4 {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+            padding: 0 15px;
+        }
+        
+        .d-flex {
+            display: flex !important;
+        }
+        
+        .align-items-center {
+            align-items: center !important;
+        }
+        
+        .text-md-right {
+            text-align: right !important;
+        }
+        
+        .text-center {
+            text-align: center !important;
+        }
+        
+        .mt-2 {
+            margin-top: 0.5rem !important;
+        }
+        
+        .mt-md-0 {
+            margin-top: 0 !important;
+        }
+        
+        .mb-0 {
+            margin-bottom: 0 !important;
+        }
+        
+        .evento-indicator {
+            margin-right: 12px;
+            position: relative;
+        }
+        
+        .pulse-dot {
+            width: 14px;
+            height: 14px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 0.7;
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+        }
+        
+        .evento-info h6 {
+            font-weight: 600;
+            margin-bottom: 2px;
+            font-size: 1rem;
+        }
+        
+        .evento-info small {
+            opacity: 0.9;
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+        
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            border: 1px solid transparent;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            border-radius: 0.25rem;
+            text-decoration: none;
+        }
+        
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            border-radius: 0.2rem;
+        }
+        
+        .btn-outline-light {
+            color: #f8f9fa;
+            border-color: #f8f9fa;
+            background-color: transparent;
+        }
+        
+        .btn-outline-light:hover {
+            color: #212529;
+            background-color: #f8f9fa;
+            border-color: #f8f9fa;
+        }
+        
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .col-md-8, .col-sm-12 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            
+            .col-md-4 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            
+            .eventos-banner {
+                padding: 12px 0;
+                animation: blink 4s infinite;
+            }
+            
+            .evento-info h6 {
+                font-size: 0.9rem;
+                margin-bottom: 1px;
+            }
+            
+            .evento-info small {
+                font-size: 0.8rem;
+            }
+            
+            .pulse-dot {
+                width: 12px;
+                height: 12px;
+            }
+            
+            .evento-indicator {
+                margin-right: 8px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .eventos-banner {
+                padding: 10px 0;
+            }
+            
+            .evento-info h6 {
+                font-size: 0.85rem;
+            }
+            
+            .evento-info small {
+                font-size: 0.75rem;
+            }
+            
+            .btn-sm {
+                padding: 0.2rem 0.4rem;
+                font-size: 0.8rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-content p {
+                font-size: 0.9rem;
+            }
+        }
+        
+        .content {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .test-info {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .device-info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Simular hero section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>UBICATEC</h1>
+            <p>Tu Guía Inteligente del Campus</p>
+        </div>
+    </div>
+    
+    <!-- Banner de eventos en curso -->
+    <div id="eventos-banner" class="eventos-banner">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8 col-sm-12">
+                    <div class="d-flex align-items-center">
+                        <div class="evento-indicator">
+                            <div class="pulse-dot"></div>
+                        </div>
+                        <div class="evento-info">
+                            <h6 class="mb-0">🎯 Evento en curso</h6>
+                            <small id="evento-actual-texto">Ponencia: Análisis de señales fetales con IA - Comenzó hace 1 min</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 text-md-right text-center mt-2 mt-md-0">
+                    <button class="btn btn-sm btn-outline-light" onclick="window.location.href='jornadas.html'">
+                        Ver detalles
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>🧪 Test del Banner en Móviles</h2>
+        
+        <div class="test-info">
+            <h3>¿Qué deberías ver?</h3>
+            <ul style="text-align: left;">
+                <li>✅ <strong>Banner verde</strong> con efecto de parpadeo sutil</li>
+                <li>⚡ <strong>Punto blanco pulsante</strong> con resplandor</li>
+                <li>📱 <strong>Responsive</strong> que se adapta a diferentes tamaños</li>
+                <li>🎯 <strong>Posicionado</strong> justo después del hero</li>
+            </ul>
+        </div>
+        
+        <div class="device-info">
+            <strong>Información del Dispositivo:</strong><br>
+            <span id="device-info">Cargando...</span>
+        </div>
+        
+        <div class="test-info">
+            <h3>Prueba en diferentes dispositivos:</h3>
+            <ol style="text-align: left;">
+                <li><strong>Desktop:</strong> El banner debe ocupar el ancho completo</li>
+                <li><strong>Tablet:</strong> El botón debe centrarse debajo del texto</li>
+                <li><strong>Móvil:</strong> Todo debe apilarse verticalmente</li>
+            </ol>
+        </div>
+        
+        <div class="test-info">
+            <h3>Efectos visuales:</h3>
+            <ul style="text-align: left;">
+                <li>🔄 <strong>Parpadeo:</strong> Sutil animación cada 3 segundos</li>
+                <li>💫 <strong>Pulso:</strong> Punto blanco que pulsa cada 2 segundos</li>
+                <li>✨ <strong>Resplandor:</strong> Sombra suave alrededor del punto</li>
+                <li>📐 <strong>Escala:</strong> Ligero aumento de tamaño en el parpadeo</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function updateDeviceInfo() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const deviceType = width <= 480 ? 'Móvil' : width <= 768 ? 'Tablet' : 'Desktop';
+            
+            document.getElementById('device-info').innerHTML = `
+                Ancho: ${width}px<br>
+                Alto: ${height}px<br>
+                Tipo: ${deviceType}<br>
+                Ratio: ${(width/height).toFixed(2)}
+            `;
+        }
+        
+        // Actualizar información del dispositivo
+        updateDeviceInfo();
+        window.addEventListener('resize', updateDeviceInfo);
+        
+        // Verificar que el banner existe
+        window.onload = function() {
+            const banner = document.getElementById('eventos-banner');
+            const texto = document.getElementById('evento-actual-texto');
+            
+            console.log('Banner encontrado:', banner);
+            console.log('Texto encontrado:', texto);
+            console.log('Display:', banner ? getComputedStyle(banner).display : 'No encontrado');
+        };
+    </script>
+</body>
+</html>

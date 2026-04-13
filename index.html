@@ -1,0 +1,2937 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bienvenido a UBICATEC</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdn.linearicons.com">
+    <link rel="preconnect" href="https://use.fontawesome.com">
+    <link rel="preconnect" href="https://unpkg.com">
+
+    <link rel="preload" as="image" href="img/logo/logo.svg">
+
+    <!-- CSS crítico - carga síncrona -->
+    <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Work+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <!-- CSS no crítico - carga asíncrona -->
+    <link rel="preload" href="vendor/select2/select2.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="vendor/owlcarousel/owl.carousel.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="vendor/lightcase/lightcase.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://unpkg.com/aos@next/dist/aos.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
+    <!-- Estilos críticos inline para evitar FOUC -->
+    <style>
+        /* Estilos críticos mínimos para evitar FOUC */
+        body {
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Ocultar contenido hasta que se cargue el CSS completo */
+        .fouc-hidden {
+            visibility: hidden;
+        }
+
+        /* Mostrar contenido una vez que el CSS esté cargado */
+        .fouc-loaded {
+            visibility: visible !important;
+        }
+
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(3px);
+            }
+        }
+
+
+        @keyframes floatingPulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+            }
+
+            50% {
+                transform: scale(1.4);
+                opacity: 0.8;
+                box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        /* Gradiente Animado para Hero - Tonos Azul/Púrpura/Turquesa */
+        @keyframes hero-gradient-animation {
+            0% {
+                --s-start-0: 14.489998991212337%;
+                --s-end-0: 72%;
+                --x-0: 93%;
+                --c-0: hsla(212, 0%, 0%, 1);
+                --y-0: 93%;
+                --c-1: hsla(212, 0%, 0%, 1);
+                --x-1: 26%;
+                --s-start-1: 0%;
+                --s-end-1: 45%;
+                --y-1: 9%;
+                --s-start-2: 2.9253667596993065%;
+                --s-end-2: 22.388851682060018%;
+                --y-2: 79%;
+                --x-2: 15%;
+                --c-2: hsla(257.14285714285717, 91%, 27%, 0.35);
+                --c-3: hsla(212.47058823529412, 100%, 50%, 0.5);
+                --y-3: 104%;
+                --s-start-3: 3.985353824694249%;
+                --s-end-3: 47.580278608924694%;
+                --x-3: 40%;
+                --y-4: 60%;
+                --s-start-4: 2.391200382592061%;
+                --s-end-4: 29.307684556768592%;
+                --c-4: hsla(224.44444444444443, 72%, 36%, 1);
+                --x-4: 0%;
+                --c-5: hsla(248.30769230769235, 52%, 24%, 1);
+                --s-start-5: 2.9253667596993065%;
+                --s-end-5: 22.388851682060018%;
+                --x-5: 92%;
+                --y-5: 37%;
+                --s-start-6: 13.173642363290591%;
+                --s-end-6: 31.747336520355095%;
+                --c-6: hsla(212.47058823529412, 100%, 50%, 0.19);
+                --x-6: 101%;
+                --y-6: 16%;
+                --y-7: 13%;
+                --s-start-7: 1%;
+                --s-end-7: 31%;
+                --x-7: 90%;
+                --c-7: hsla(227.6470588235294, 98%, 53%, 1);
+                --y-8: 56%;
+                --x-8: 104%;
+                --s-start-8: 3.985353824694249%;
+                --s-end-8: 13.103042116379756%;
+                --c-8: hsla(166.53061224489795, 71%, 60%, 0.32);
+                --s-start-9: 18.597054544690312%;
+                --s-end-9: 31%;
+                --x-9: 97%;
+                --c-9: hsla(219.2079207920792, 83%, 23%, 0.18);
+                --y-9: 19%;
+            }
+
+            100% {
+                --s-start-0: 2.391200382592061%;
+                --s-end-0: 43.902064173373226%;
+                --x-0: 7%;
+                --c-0: hsla(306, 0%, 0%, 1);
+                --y-0: 9%;
+                --c-1: hsla(306, 0%, 0%, 1);
+                --x-1: 96%;
+                --s-start-1: 9%;
+                --s-end-1: 54.805582404585024%;
+                --y-1: 93%;
+                --s-start-2: 3%;
+                --s-end-2: 26.722813338714598%;
+                --y-2: 103%;
+                --x-2: -2%;
+                --c-2: hsla(166.53061224489795, 72%, 60%, 1);
+                --c-3: hsla(180, 100%, 50%, 0.26);
+                --y-3: 82%;
+                --s-start-3: 2.391200382592061%;
+                --s-end-3: 32.0689540200964%;
+                --x-3: 33%;
+                --y-4: 81%;
+                --s-start-4: 4.40642490323111%;
+                --s-end-4: 37.23528104246256%;
+                --c-4: hsla(212.43243243243245, 88%, 26%, 0.58);
+                --x-4: 37%;
+                --c-5: hsla(271.9148936170212, 98%, 53%, 0.31);
+                --s-start-5: 3%;
+                --s-end-5: 32.537089799783296%;
+                --x-5: 54%;
+                --y-5: 99%;
+                --s-start-6: 6%;
+                --s-end-6: 42.501105312974815%;
+                --c-6: hsla(262.82352941176475, 100%, 50%, 0.15);
+                --x-6: 104%;
+                --y-6: 43%;
+                --y-7: -16%;
+                --s-start-7: 5%;
+                --s-end-7: 13.10107024898374%;
+                --x-7: 104%;
+                --c-7: hsla(298.60465116279073, 36%, 23%, 1);
+                --y-8: 30%;
+                --x-8: 97%;
+                --s-start-8: 2.391200382592061%;
+                --s-end-8: 27.141813016850573%;
+                --c-8: hsla(180, 100%, 50%, 0.11);
+                --s-start-9: 5%;
+                --s-end-9: 21.32164536610654%;
+                --x-9: 78%;
+                --c-9: hsla(219.2079207920792, 83%, 23%, 0.59);
+                --y-9: 4%;
+            }
+        }
+
+        @property --s-start-0 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 14.489998991212337%;
+        }
+
+        @property --s-end-0 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 72%;
+        }
+
+        @property --x-0 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 93%;
+        }
+
+        @property --c-0 {
+            syntax: '<color>';
+            inherits: false;
+            initial-value: hsla(212, 0%, 0%, 1);
+        }
+
+        @property --y-0 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 93%;
+        }
+
+        @property --c-1 {
+            syntax: '<color>';
+            inherits: false;
+            initial-value: hsla(212, 0%, 0%, 1);
+        }
+
+        @property --x-1 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 26%;
+        }
+
+        @property --s-start-1 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 0%;
+        }
+
+        @property --s-end-1 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 45%;
+        }
+
+        @property --y-1 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 9%;
+        }
+
+        @property --s-start-2 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 2.9253667596993065%;
+        }
+
+        @property --s-end-2 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 22.388851682060018%;
+        }
+
+        @property --y-2 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 79%;
+        }
+
+        @property --x-2 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 15%;
+        }
+
+        @property --c-2 {
+            syntax: '<color>';
+            inherits: false;
+            initial-value: hsla(257.14285714285717, 91%, 27%, 0.35);
+        }
+
+        @property --c-3 {
+            syntax: '<color>';
+            inherits: false;
+            initial-value: hsla(212.47058823529412, 100%, 50%, 0.5);
+        }
+
+        @property --y-3 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 104%;
+        }
+
+        @property --s-start-3 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 3.985353824694249%;
+        }
+
+        @property --s-end-3 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 47.580278608924694%;
+        }
+
+        @property --x-3 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 40%;
+        }
+
+        @property --y-4 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 60%;
+        }
+
+        @property --s-start-4 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 2.391200382592061%;
+        }
+
+        @property --s-end-4 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 29.307684556768592%;
+        }
+
+        @property --c-4 {
+            syntax: '<color>';
+            inherits: false;
+            initial-value: hsla(224.44444444444443, 72%, 36%, 1);
+        }
+
+        @property --x-4 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 0%;
+        }
+
+        @property --c-5 {
+            syntax: '<color>';
+            inherits: false;
+            initial-value: hsla(248.30769230769235, 52%, 24%, 1);
+        }
+
+        @property --s-start-5 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 2.9253667596993065%;
+        }
+
+        @property --s-end-5 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 22.388851682060018%;
+        }
+
+        @property --x-5 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 92%;
+        }
+
+        @property --y-5 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 37%;
+        }
+
+        @property --s-start-6 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 13.173642363290591%;
+        }
+
+        @property --s-end-6 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 31.747336520355095%;
+        }
+
+        @property --c-6 {
+            syntax: '<color>';
+            inherits: false;
+            initial-value: hsla(212.47058823529412, 100%, 50%, 0.19);
+        }
+
+        @property --x-6 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 101%;
+        }
+
+        @property --y-6 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 16%;
+        }
+
+        @property --y-7 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 13%;
+        }
+
+        @property --s-start-7 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 1%;
+        }
+
+        @property --s-end-7 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 31%;
+        }
+
+        @property --x-7 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 90%;
+        }
+
+        @property --c-7 {
+            syntax: '<color>';
+            inherits: false;
+            initial-value: hsla(227.6470588235294, 98%, 53%, 1);
+        }
+
+        @property --y-8 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 56%;
+        }
+
+        @property --x-8 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 104%;
+        }
+
+        @property --s-start-8 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 3.985353824694249%;
+        }
+
+        @property --s-end-8 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 13.103042116379756%;
+        }
+
+        @property --c-8 {
+            syntax: '<color>';
+            inherits: false;
+            initial-value: hsla(166.53061224489795, 71%, 60%, 0.32);
+        }
+
+        @property --s-start-9 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 18.597054544690312%;
+        }
+
+        @property --s-end-9 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 31%;
+        }
+
+        @property --x-9 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 97%;
+        }
+
+        @property --c-9 {
+            syntax: '<color>';
+            inherits: false;
+            initial-value: hsla(219.2079207920792, 83%, 23%, 0.18);
+        }
+
+        @property --y-9 {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 19%;
+        }
+
+        /* Aplicar el gradiente animado al hero */
+        .video-bienvenida-container {
+            --x-0: 93%;
+            --c-0: hsla(212, 0%, 0%, 1);
+            --y-0: 93%;
+            --c-1: hsla(212, 0%, 0%, 1);
+            --x-1: 26%;
+            --y-1: 9%;
+            --y-2: 79%;
+            --x-2: 15%;
+            --c-2: hsla(257.14285714285717, 91%, 27%, 0.35);
+            --c-3: hsla(212.47058823529412, 100%, 50%, 0.5);
+            --y-3: 104%;
+            --x-3: 40%;
+            --y-4: 60%;
+            --c-4: hsla(224.44444444444443, 72%, 36%, 1);
+            --x-4: 0%;
+            --c-5: hsla(248.30769230769235, 52%, 24%, 1);
+            --x-5: 92%;
+            --y-5: 37%;
+            --c-6: hsla(212.47058823529412, 100%, 50%, 0.19);
+            --x-6: 101%;
+            --y-6: 16%;
+            --y-7: 13%;
+            --x-7: 90%;
+            --c-7: hsla(227.6470588235294, 98%, 53%, 1);
+            --y-8: 56%;
+            --x-8: 104%;
+            --c-8: hsla(166.53061224489795, 71%, 60%, 0.32);
+            --x-9: 97%;
+            --c-9: hsla(219.2079207920792, 83%, 23%, 0.18);
+            --y-9: 19%;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            background-color: hsla(305, 0%, 0%, 1);
+            background-image:
+                radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)),
+                radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)),
+                radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)),
+                radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3)),
+                radial-gradient(circle at var(--x-4) var(--y-4), var(--c-4) var(--s-start-4), transparent var(--s-end-4)),
+                radial-gradient(circle at var(--x-5) var(--y-5), var(--c-5) var(--s-start-5), transparent var(--s-end-5)),
+                radial-gradient(circle at var(--x-6) var(--y-6), var(--c-6) var(--s-start-6), transparent var(--s-end-6)),
+                radial-gradient(circle at var(--x-7) var(--y-7), var(--c-7) var(--s-start-7), transparent var(--s-end-7)),
+                radial-gradient(circle at var(--x-8) var(--y-8), var(--c-8) var(--s-start-8), transparent var(--s-end-8)),
+                radial-gradient(circle at var(--x-9) var(--y-9), var(--c-9) var(--s-start-9), transparent var(--s-end-9));
+            animation: hero-gradient-animation 10s linear infinite alternate;
+            background-blend-mode: normal;
+        }
+
+        /* Logo de bienvenida dentro del hero */
+        .video-bienvenida-container .logo-bienvenida {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .video-bienvenida-container .logo-bienvenida img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            transform: none;
+            /* Sin transform por defecto en desktop */
+        }
+
+        /* Estilos específicos para desktop (768px en adelante) */
+        @media (min-width: 769px) {
+            .video-bienvenida-container .logo-bienvenida {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+            }
+
+            #slide-logo .logo-bienvenida img,
+            .video-bienvenida-container .logo-bienvenida img,
+            .logo-bienvenida img {
+                transform: translateX(0);
+                max-width: 400px;
+                width: auto;
+                margin: 0 auto;
+                display: block;
+                position: relative;
+                left: -120px;
+                right: 0px;
+            }
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+
+            /* Reset completo de todos los contenedores */
+            #slide-logo {
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                width: 100% !important;
+                padding: 0 !important;
+            }
+
+            #slide-logo * {
+                box-sizing: border-box !important;
+            }
+
+            #slide-logo .container {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+
+            #slide-logo .row {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                width: 100% !important;
+                display: flex !important;
+                justify-content: center !important;
+            }
+
+            #slide-logo .col-12 {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                flex: 0 0 100% !important;
+            }
+
+            /* Centrado del logo - método triple */
+            .video-bienvenida-container .logo-bienvenida,
+            .logo-bienvenida {
+                display: block !important;
+                text-align: center !important;
+                width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .video-bienvenida-container .logo-bienvenida img,
+            .logo-bienvenida img,
+            .logo-bienvenida svg {
+                display: block !important;
+                margin: 0 auto !important;
+                padding: 0 !important;
+                max-width: 250px !important;
+                width: auto !important;
+                height: auto !important;
+                position: relative !important;
+                left: 0 !important;
+                right: 0 !important;
+            }
+
+            /* Ajuste fino de centrado - mover ligeramente a la izquierda y subir */
+            #slide-logo .logo-bienvenida img {
+                transform: translateX(-12%) translateY(-80px) !important;
+            }
+
+            .video-bienvenida-container h4 {
+                font-size: 28px !important;
+            }
+
+            .video-bienvenida-container p {
+                font-size: 16px !important;
+            }
+        }
+
+        /* Ocultar overlay para no interferir con el nuevo fondo */
+        .overlay2 {
+            display: none;
+        }
+
+        /* Hero Fijo con Animación de Contenido basada en Scroll */
+        .hero-scroll-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+            /* Debe estar debajo de la navbar (z-index: 1000) */
+        }
+
+        .hero-content-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            will-change: opacity, filter;
+            transition: none;
+            /* Controlamos con JavaScript y animaciones blur */
+        }
+
+        /* Logo - Slide 1 (inicialmente visible) */
+        #slide-logo {
+            opacity: 1;
+            filter: blur(0);
+            z-index: 2;
+            visibility: visible;
+        }
+
+        /* Contenido - Slide 2 (inicialmente oculto) */
+        #slide-content {
+            opacity: 0;
+            filter: blur(12px);
+            z-index: 1;
+            visibility: hidden;
+        }
+
+        /* Ajuste del slide-content en mobile para evitar superposición con navbar flotante */
+        @media (max-width: 768px) {
+            #slide-content {
+                display: flex;
+                align-items: center;
+                padding-bottom: 20px;
+            }
+
+            #slide-content .container {
+                height: auto;
+                max-height: 100%;
+            }
+        }
+
+        /* Glass card para el contenido de Descubre UBICATEC */
+        .glass-card {
+            background: rgba(12, 56, 114, 0.2);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Scrollbar personalizada para mobile */
+        @media (max-width: 768px) {
+            .glass-card::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            .glass-card::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+            }
+
+            .glass-card::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 10px;
+            }
+
+            .glass-card::-webkit-scrollbar-thumb:hover {
+                background: rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        .glass-card h4 {
+            font-size: 28px !important;
+            font-weight: bold;
+        }
+
+        .glass-card p {
+            font-size: 16px !important;
+        }
+
+        .glass-card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Imagen más pequeña en mobile */
+        @media (max-width: 768px) {
+            .glass-card img {
+                width: 40% !important;
+                max-width: 150px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .glass-card img {
+                width: 35% !important;
+                max-width: 120px !important;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .glass-card img {
+                width: 30% !important;
+                max-width: 100px !important;
+            }
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.4);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive para la glass card */
+        @media (max-width: 768px) {
+            .glass-card {
+                padding: 20px;
+                border-radius: 15px;
+                margin-bottom: 120px;
+                /* Espacio para la navbar flotante */
+                max-height: calc(100vh - 180px);
+                /* Altura máxima considerando navbar */
+                overflow-y: auto;
+                /* Scroll si el contenido es muy largo */
+            }
+
+            .glass-card h4 {
+                font-size: 22px !important;
+            }
+
+            .glass-card p {
+                font-size: 14px !important;
+            }
+
+            /* Ajustes adicionales para pantallas muy pequeñas */
+            @media (max-width: 480px) {
+                .glass-card {
+                    padding: 18px;
+                    margin-bottom: 110px;
+                    max-height: calc(100vh - 160px);
+                }
+
+                .glass-card h4 {
+                    font-size: 20px !important;
+                }
+
+                .glass-card p {
+                    font-size: 13px !important;
+                }
+            }
+
+            @media (max-width: 375px) {
+                .glass-card {
+                    padding: 16px;
+                    margin-bottom: 100px;
+                    max-height: calc(100vh - 150px);
+                }
+
+                .glass-card h4 {
+                    font-size: 18px !important;
+                }
+
+                .glass-card p {
+                    font-size: 12px !important;
+                }
+            }
+        }
+
+        /* Indicador de scroll */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-indicator i {
+            font-size: 32px;
+            color: rgba(255, 255, 255, 0.8);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Sin espacio de scroll adicional - cambio por secciones */
+        body {
+            min-height: 100vh;
+        }
+
+        /* ----------------------------------------------
+          Generated by AnimatiSS
+          Licensed under FreeBSD License
+          URL: https://xsgames.co/animatiss
+          Twitter: @xsgames_
+        ---------------------------------------------- */
+
+        .blur-in {
+            animation: blur-in 0.6s ease-out both;
+        }
+
+        @keyframes blur-in {
+            0% {
+                filter: blur(12px);
+                opacity: 0;
+            }
+
+            100% {
+                filter: blur(0);
+                opacity: 1;
+            }
+        }
+
+        .blur-out {
+            animation: blur-out 0.6s ease-in both;
+        }
+
+        @keyframes blur-out {
+            0% {
+                filter: blur(0);
+                opacity: 1;
+            }
+
+            100% {
+                filter: blur(12px);
+                opacity: 0;
+            }
+        }
+
+
+
+
+        /* Estilos para la navbar con efecto glass (glassmorphism) */
+        #header-navbar,
+        nav#header-navbar.navbar {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0;
+            right: 0;
+            z-index: 1000 !important;
+            /* Mismo color que el hero - Negro oscuro más transparente con glassmorphism */
+            background: hsla(305, 0%, 0%, 0.4) !important;
+            background-color: hsla(305, 0%, 0%, 0.4) !important;
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: none !important;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2) !important;
+            padding-top: 0.5rem !important;
+            padding-bottom: 0.5rem !important;
+        }
+
+        /* Separación entre items de la navbar */
+        #header-navbar .nav-item {
+            margin-left: 8px;
+            margin-right: 8px;
+        }
+
+        /* Estilos para el texto de los botones de la navbar */
+        #header-navbar .nav-link {
+            font-weight: bold !important;
+            font-family: 'Lato', sans-serif !important;
+            font-size: 15px !important;
+            color: rgba(255, 255, 255, 0.95) !important;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+        }
+
+        #header-navbar .nav-link i {
+            font-size: 16px;
+        }
+
+        #header-navbar .nav-link:hover {
+            color: rgba(255, 255, 255, 1) !important;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        #header-navbar .nav-link:focus,
+        #header-navbar .nav-link:active,
+        #header-navbar .nav-link.active {
+            background: transparent !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        #header-navbar .dropdown-toggle {
+            font-weight: bold !important;
+            font-family: 'Lato', sans-serif !important;
+            font-size: 15px !important;
+            color: rgba(255, 255, 255, 0.95) !important;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+        }
+
+        #header-navbar .dropdown-toggle i {
+            font-size: 16px;
+        }
+
+        #header-navbar .dropdown-toggle:hover {
+            color: rgba(255, 255, 255, 1) !important;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        #header-navbar .dropdown-toggle:focus,
+        #header-navbar .dropdown-toggle:active,
+        #header-navbar .dropdown-toggle.show {
+            background: transparent !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Dropdown menu con fondo blanco */
+        #header-navbar .dropdown-menu {
+            background: #ffffff !important;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            padding: 8px;
+        }
+
+        #header-navbar .dropdown-item {
+            color: #0c3872 !important;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        #header-navbar .dropdown-item i {
+            font-size: 16px;
+            min-width: 20px;
+            text-align: center;
+            color: #0c3872;
+        }
+
+        #header-navbar .dropdown-item:hover {
+            background: #0c3872 !important;
+            color: #ffffff !important;
+        }
+
+        #header-navbar .dropdown-item:hover i {
+            color: #ffffff;
+        }
+
+        #header-navbar .dropdown-item:focus,
+        #header-navbar .dropdown-item:active,
+        #header-navbar .dropdown-item.active {
+            background: transparent !important;
+            outline: none !important;
+        }
+
+        #header-navbar .dropdown-divider {
+            border-color: rgba(12, 56, 114, 0.1);
+            margin: 8px 0;
+        }
+
+        /* Estilos para el logo de UBICATEC */
+        #header-navbar .navbar-brand img {
+            height: 35px !important;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        /* Estilos para el modal de anuncio */
+        .modal-anuncio {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-anuncio.show {
+            display: flex;
+        }
+
+        .modal-anuncio-content {
+            background: transparent;
+            border-radius: 15px;
+            padding: 0;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-anuncio-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            z-index: 10001;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-anuncio-close:hover {
+            color: #000;
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
+        }
+
+        .modal-anuncio img {
+            max-width: 90vw;
+            max-height: calc(90vh - 60px);
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 15px 15px 0 0;
+            display: block;
+            flex-shrink: 0;
+        }
+
+        .modal-anuncio-boton {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            border-radius: 0 0 15px 15px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            height: 60px;
+            transition: all 0.3s ease;
+            font-family: 'Lato', sans-serif;
+            flex-shrink: 0;
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-anuncio-boton:hover {
+            background: linear-gradient(135deg, #0056b3, #004085);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        /* Responsive para desktop */
+        @media (min-width: 769px) {
+            .modal-anuncio-content {
+                max-width: 85vw;
+                max-height: 88vh;
+            }
+
+            .modal-anuncio img {
+                max-width: 85vw;
+                max-height: calc(88vh - 60px);
+            }
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .modal-anuncio-content {
+                max-width: 95vw;
+                max-height: 90vh;
+            }
+
+            .modal-anuncio img {
+                max-width: 95vw;
+                max-height: calc(90vh - 55px);
+            }
+
+            .modal-anuncio-boton {
+                height: 55px;
+                font-size: 15px;
+                padding: 15px 20px;
+            }
+
+            .modal-anuncio-close {
+                top: 10px;
+                right: 15px;
+                width: 35px;
+                height: 35px;
+                font-size: 25px;
+            }
+        }
+
+        /* Indicador de Scroll Horizontal Mobile */
+        .scroll-hint-mobile {
+            display: none;
+            position: fixed;
+            bottom: 115px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            animation: slideHint 2s ease-in-out infinite;
+        }
+
+        .scroll-hint-mobile span {
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0 8px;
+            white-space: nowrap;
+        }
+
+        .scroll-hint-mobile i {
+            color: #ffffff;
+            font-size: 12px;
+            animation: slideArrows 1.5s ease-in-out infinite;
+        }
+
+        .scroll-hint-mobile i:first-child {
+            animation-delay: 0s;
+        }
+
+        .scroll-hint-mobile i:last-child {
+            animation-delay: 0.2s;
+        }
+
+        @keyframes slideHint {
+
+            0%,
+            100% {
+                transform: translateX(-50%) scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: translateX(-50%) scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideArrows {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(3px);
+            }
+        }
+
+        /* ============================================
+           SISTEMA DE NOTIFICACIONES EN CÁPSULAS
+           ============================================ */
+
+        .notification-container {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            pointer-events: none;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .notification-capsule {
+            background: #000000;
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 50px;
+            padding: 12px 28px;
+            box-shadow:
+                0 0 15px rgba(59, 130, 246, 0.2),
+                0 0 8px rgba(59, 130, 246, 0.15),
+                0 4px 16px rgba(0, 0, 0, 0.4),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1),
+                inset 0 -1px 1px rgba(0, 0, 0, 0.3);
+            border: 1.5px solid rgba(59, 130, 246, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: auto;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efecto de glow animado - Desactivado */
+
+        .notification-capsule:hover {
+            transform: scale(1.03);
+            background: #000000;
+            box-shadow:
+                0 0 20px rgba(59, 130, 246, 0.3),
+                0 0 12px rgba(59, 130, 246, 0.2),
+                0 6px 24px rgba(0, 0, 0, 0.5),
+                inset 0 1px 1px rgba(255, 255, 255, 0.15),
+                inset 0 -1px 1px rgba(0, 0, 0, 0.3);
+            border-color: rgba(59, 130, 246, 0.6);
+        }
+
+        .notification-capsule.removing {
+            animation: scaleOut 0.3s ease forwards;
+        }
+
+        /* Tipos de notificaciones - Sin bordes ni glow */
+
+        .notification-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.3),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .notification-icon::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.3);
+                opacity: 0.6;
+            }
+        }
+
+        .notification-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .notification-badge {
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.3), rgba(147, 51, 234, 0.3));
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            margin-bottom: 3px;
+            display: inline-block;
+            animation: badgePulse 2s infinite;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+        }
+
+        @keyframes badgePulse {
+
+            0%,
+            100% {
+                opacity: 0.9;
+                box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+            }
+
+            50% {
+                opacity: 1;
+                box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+            }
+        }
+
+        .notification-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.98);
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .notification-message {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.75);
+            margin: 2px 0 0 0;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+
+        .notification-close {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .notification-close:hover {
+            background: rgba(239, 68, 68, 0.3);
+            border-color: rgba(239, 68, 68, 0.6);
+            color: rgba(255, 255, 255, 1);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+        }
+
+        /* Animaciones */
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleOut {
+            from {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            to {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive para mobile */
+        @media (max-width: 768px) {
+            .notification-container {
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                max-width: 340px;
+            }
+
+            .notification-capsule {
+                padding: 10px 22px;
+                border-radius: 45px;
+                gap: 10px;
+            }
+
+            .notification-capsule::before {
+                border-radius: 45px;
+            }
+
+            .notification-icon {
+                width: 26px;
+                height: 26px;
+                font-size: 13px;
+            }
+
+            .notification-icon::after {
+                width: 5px;
+                height: 5px;
+            }
+
+            .notification-badge {
+                font-size: 8px;
+                padding: 2px 6px;
+            }
+
+            .notification-title {
+                font-size: 13px;
+            }
+
+            .notification-message {
+                font-size: 10px;
+            }
+
+            .notification-close {
+                width: 22px;
+                height: 22px;
+                font-size: 14px;
+            }
+        }
+
+        /* Floating Mobile Navigation - Estilo Neumórfico */
+        .floating-mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 95%;
+            max-width: 380px;
+        }
+
+        .nav-container {
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 50%, rgba(255, 255, 255, 0.02) 100%),
+                rgba(255, 255, 255, 0.005);
+            border-radius: 22px;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, 0.12),
+                0 12px 25px rgba(0, 0, 0, 0.08),
+                0 6px 12px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+                inset 1px 0 0 rgba(255, 255, 255, 0.2),
+                inset -1px 0 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(50px) saturate(200%) brightness(110%);
+            -webkit-backdrop-filter: blur(50px) saturate(200%) brightness(110%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.05) 0%,
+                    rgba(255, 255, 255, 0.01) 30%,
+                    rgba(255, 255, 255, 0.005) 50%,
+                    rgba(255, 255, 255, 0.01) 70%,
+                    rgba(255, 255, 255, 0.04) 100%);
+            border-radius: 28px;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 12px;
+            border-radius: 18px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.95);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            min-width: 56px;
+            cursor: pointer;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .nav-item:hover {
+            color: #ffffff;
+            transform: translateY(-3px) scale(1.02);
+            text-decoration: none;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%),
+                rgba(255, 255, 255, 0.01);
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.12),
+                0 5px 15px rgba(0, 0, 0, 0.08),
+                0 2px 8px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.15),
+                inset 1px 0 0 rgba(255, 255, 255, 0.2),
+                inset -1px 0 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px) saturate(130%);
+            -webkit-backdrop-filter: blur(15px) saturate(130%);
+        }
+
+        .nav-item:active {
+            transform: translateY(-1px) scale(0.98);
+            transition: all 0.1s ease;
+        }
+
+        /* Todos los elementos se ven iguales - sin distinción de activo */
+
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            z-index: 3;
+        }
+
+
+        .nav-item:hover .nav-icon {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+        .nav-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            white-space: nowrap;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            z-index: 3;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+
+        /* Efectos táctiles para móviles - iOS 26 style */
+        .nav-item:active {
+            transform: translateY(-1px) scale(0.97);
+            background: rgba(255, 255, 255, 0.04);
+            transition: all 0.1s ease;
+        }
+
+
+        /* Mostrar solo en móvil */
+        @media (max-width: 768px) {
+            .scroll-hint-mobile {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .floating-mobile-nav {
+                display: block !important;
+                animation: slideInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+
+            /* Ajustes para pantallas muy pequeñas - iOS 26 style */
+            @media (max-width: 480px) {
+                .floating-mobile-nav {
+                    width: 96%;
+                    max-width: 360px;
+                    bottom: 18px;
+                }
+
+                .nav-container {
+                    padding: 8px 10px;
+                    border-radius: 20px;
+                    backdrop-filter: blur(45px) saturate(190%) brightness(105%);
+                    -webkit-backdrop-filter: blur(45px) saturate(190%) brightness(105%);
+                }
+
+                .nav-item {
+                    padding: 8px 10px;
+                    min-width: 50px;
+                    border-radius: 16px;
+                }
+
+                .nav-icon {
+                    font-size: 18px;
+                    margin-bottom: 3px;
+                }
+
+                .nav-label {
+                    font-size: 10px;
+                    font-weight: 600;
+                }
+            }
+
+            /* Ajustes para pantallas extra pequeñas */
+            @media (max-width: 375px) {
+                .floating-mobile-nav {
+                    width: 97%;
+                    max-width: 340px;
+                    bottom: 16px;
+                }
+
+                .nav-container {
+                    padding: 6px 8px;
+                    border-radius: 18px;
+                }
+
+                .nav-item {
+                    padding: 6px 8px;
+                    min-width: 46px;
+                }
+
+                .nav-icon {
+                    font-size: 16px;
+                }
+
+                .nav-label {
+                    font-size: 9px;
+                }
+            }
+        }
+
+        /* Animación de entrada */
+        @keyframes slideInUp {
+            from {
+                transform: translateX(-50%) translateY(100px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Ocultar navbar desktop en móvil */
+        @media (max-width: 768px) {
+            #header-navbar {
+                display: none !important;
+            }
+        }
+    </style>
+
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbar" class="static-layout">
+    <!-- Modal de Anuncio -->
+    <div id="modalAnuncio" class="modal-anuncio">
+        <div class="modal-anuncio-content">
+            <span class="modal-anuncio-close" id="cerrarAnuncio">&times;</span>
+            <!-- <img src="img/Flyers/encuesta octubre 2025.jpg" alt="Encuesta UBICATEC - Hola Estudiante"> -->
+            <button class="modal-anuncio-boton" style="cursor: default;">Bienvenido al semestre Enero-Junio
+                2026</button>
+        </div>
+    </div>
+
+    <nav id="header-navbar" class="navbar navbar-expand-lg py-4">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center text-white" href="/">
+                <img src="img/navbar.svg" alt="UBICATEC logo" style="height: 25px;" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-nav-header"
+                aria-controls="navbar-nav-header" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="lnr lnr-menu"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-nav-header">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="lnr lnr-home"></i> Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aula.html">
+                            <i class="lnr lnr-map-marker"></i> Ubica tu Edificio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="noticias.html">
+                            <i class="lnr lnr-bullhorn"></i> Noticias
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="sitiosDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="lnr lnr-graduation-hat"></i> Accesos Estudiantes
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="sitiosDropdown">
+                            <a class="dropdown-item" href="eventos.html">
+                                Eventos
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="https://puebla.ambar.tecnm.mx/" rel="noopener noreferrer"
+                                target="_blank">
+                                Ambar
+                            </a>
+                            <a class="dropdown-item" href="https://idiomastecpueblacle.blogspot.com/"
+                                rel="noopener noreferrer" target="_blank">
+                                Coordinacion de lenguas Extranjeras
+                            </a>
+                            <a class="dropdown-item" href="https://evadoc.puebla.tecnm.mx/" rel="noopener noreferrer"
+                                target="_blank">
+                                Sitio Evaluacion Docente
+                            </a>
+                            <a class="dropdown-item" href="https://www.facebook.com/DesarrolloAcademicoItPuebla"
+                                rel="noopener noreferrer" target="_blank">
+                                Desarrollo Academico (Facebook)
+                            </a>
+                            <a class="dropdown-item" href="https://www.facebook.com/profile.php?id=100063864618184"
+                                rel="noopener noreferrer" target="_blank">
+                                Actividades Extraescolares (Facebook)
+                            </a>
+                            <a class="dropdown-item" href="https://www.facebook.com/TECNMcampusPuebla"
+                                rel="noopener noreferrer" target="_blank">
+                                TecNM Puebla (Facebook)
+                            </a>
+                            <a class="dropdown-item" href="https://www.facebook.com/cesacampuspuebla"
+                                rel="noopener noreferrer" target="_blank">
+                                CESA Puebla (Facebook)
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="equipo.html">
+                            <i class="lnr lnr-users"></i> Equipo de desarrollo
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="hero-scroll-container" id="heroScrollContainer">
+        <div class="video-bienvenida-container">
+            <div class="overlay2"></div>
+
+            <div class="hero-content-wrapper">
+                <!-- Slide 1: Logo -->
+                <div class="hero-slide" id="slide-logo">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-12 text-center">
+                                <div class="logo-bienvenida">
+                                    <img src="img/logo/logo.svg" alt="Logo de Bienvenida">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2: Contenido Descubre UBICATEC -->
+                <div class="hero-slide" id="slide-content">
+                    <div class="container">
+                        <div class="row align-items-center text-white">
+                            <div class="col-md-10 offset-md-1">
+                                <div class="glass-card">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-7">
+                                            <h4 class="mb-3">Descubre UBICATEC: Tu Guía Inteligente del Campus</h4>
+                                            <p class="mb-3">Transforma tu experiencia en el campus con
+                                                <strong>UBICATEC</strong>, la solución innovadora que revoluciona la
+                                                navegación universitaria. Nuestra plataforma utiliza tecnología de
+                                                vanguardia con <strong>imágenes 360°</strong> y <strong>geolocalización
+                                                    precisa</strong> para llevarte exactamente donde necesitas estar.
+                                            </p>
+
+                                            <p class="mb-2">• <strong>Encuentra instantáneamente:</strong> Aulas,
+                                                laboratorios, bibliotecas, espacios deportivos y servicios
+                                                administrativos</p>
+                                            <p class="mb-2">• <strong>Ahorra tiempo:</strong> Navegación optimizada que
+                                                reduce tus traslados y mejora tu productividad</p>
+                                            <p class="mb-2">• <strong>Acceso universal:</strong> Disponible en cualquier
+                                                campus del TECNM y adaptable a otros espacios educativos</p>
+                                        </div>
+                                        <div class="col-md-5 text-center">
+                                            <img src="img/marcador.png" alt="UBICATEC"
+                                                style="width: 60%; max-width: 250px;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indicador de scroll -->
+                <div class="scroll-indicator">
+                    <i class="lnr lnr-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor de Notificaciones -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Indicador de Scroll Horizontal (Mobile) -->
+    <div class="scroll-hint-mobile" id="scrollHintMobile">
+        <i class="lnr lnr-chevron-left"></i>
+        <span>Desliza horizontalmente</span>
+        <i class="lnr lnr-chevron-right"></i>
+    </div>
+
+    <!-- Floating Mobile Navigation Bar -->
+    <div class="floating-mobile-nav" id="floatingMobileNav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-item active" id="navHome">
+                <div class="nav-icon">
+                    <i class="lnr lnr-home"></i>
+                </div>
+                <span class="nav-label">Inicio</span>
+            </a>
+            <a href="aula.html" class="nav-item" id="navAula">
+                <div class="nav-icon">
+                    <i class="lnr lnr-map-marker"></i>
+                </div>
+                <span class="nav-label">Ubica</span>
+            </a>
+            <a href="noticias.html" class="nav-item" id="navNoticias">
+                <div class="nav-icon">
+                    <i class="lnr lnr-bullhorn"></i>
+                </div>
+                <span class="nav-label">Noticias</span>
+            </a>
+            <a href="eventos.html" class="nav-item" id="navEventos">
+                <div class="nav-icon">
+                    <i class="lnr lnr-calendar-full"></i>
+                </div>
+                <span class="nav-label">Eventos</span>
+            </a>
+            <a href="equipo.html" class="nav-item" id="navEquipo">
+                <div class="nav-icon">
+                    <i class="lnr lnr-users"></i>
+                </div>
+                <span class="nav-label">Equipo</span>
+            </a>
+        </div>
+    </div>
+
+
+
+
+    <!-- JavaScript con Detección Directa de Color -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Solo ejecutar en dispositivos móviles
+            if (window.innerWidth <= 768) {
+                const navItems = document.querySelectorAll('.floating-mobile-nav .nav-item');
+                let activeItem = null;
+
+                // Función para establecer item activo
+                function setActiveNavItem(item) {
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    item.classList.add('active');
+                    activeItem = item;
+                }
+
+                // Sistema DIRECTO de detección de color basado en scroll
+                const DirectColorDetector = {
+                    currentState: null,
+                    lastUpdate: 0,
+
+                    // Detectar si estamos sobre fondo claro u oscuro basado en posición de scroll
+                    detectBackgroundType() {
+                        const navbar = document.getElementById('floatingMobileNav');
+                        if (!navbar) return 'dark'; // Default a oscuro
+
+                        const rect = navbar.getBoundingClientRect();
+                        const centerY = rect.top + rect.height / 2;
+
+                        // Si el navbar está en la parte superior de la pantalla (sobre el header azul)
+                        if (centerY < window.innerHeight * 0.6) {
+                            return 'dark'; // Header azul oscuro
+                        } else {
+                            return 'light'; // Contenido blanco
+                        }
+                    },
+
+                    // Actualizar colores basado en posición
+                    update() {
+                        const now = Date.now();
+                        if (now - this.lastUpdate < 100) return; // Throttle
+
+                        const backgroundType = this.detectBackgroundType();
+
+                        // Solo actualizar si el estado cambió
+                        if (this.currentState !== backgroundType) {
+                            this.currentState = backgroundType;
+
+                            navItems.forEach(item => {
+                                item.style.transition = 'color 0.4s ease';
+
+                                // Siempre usar texto blanco
+                                item.style.color = 'rgba(255, 255, 255, 0.95)';
+                                item.style.textShadow = '0 1px 3px rgba(0, 0, 0, 0.5)';
+                                item.style.fontWeight = '600';
+                            });
+
+                            this.lastUpdate = now;
+                        }
+                    }
+                };
+
+                // Inicializar sistema directo basado en posición
+                const initDirectColorDetection = () => {
+                    // Actualización inicial
+                    DirectColorDetector.update();
+
+                    // Eventos optimizados
+                    let scrollTimer;
+                    let resizeTimer;
+
+                    // Scroll con throttling - esto es clave para la detección
+                    window.addEventListener('scroll', () => {
+                        if (scrollTimer) return;
+                        scrollTimer = setTimeout(() => {
+                            DirectColorDetector.update();
+                            scrollTimer = null;
+                        }, 50); // Más rápido para mejor respuesta
+                    }, { passive: true });
+
+                    // Resize con debounce
+                    window.addEventListener('resize', () => {
+                        if (resizeTimer) clearTimeout(resizeTimer);
+                        resizeTimer = setTimeout(() => DirectColorDetector.update(), 200);
+                    });
+
+                    // Actualización después de cargar
+                    window.addEventListener('load', () => {
+                        setTimeout(() => DirectColorDetector.update(), 300);
+                    });
+                };
+
+                // Inicialización directa
+                setTimeout(initDirectColorDetection, 100);
+                setTimeout(() => DirectColorDetector.update(), 300);
+
+                // Efectos táctiles para móviles
+                navItems.forEach(item => {
+                    let isPressed = false;
+                    let pressTimer = null;
+
+                    // Efecto de presión en touch
+                    item.addEventListener('touchstart', function (e) {
+                        isPressed = true;
+                        this.style.transform = 'scale(0.95) translateY(2px)';
+                        this.style.transition = 'all 0.1s ease';
+
+                        pressTimer = setTimeout(() => {
+                            if (isPressed) {
+                                this.style.transform = 'scale(0.9) translateY(4px)';
+                                this.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.15)';
+                            }
+                        }, 100);
+                    }, { passive: true });
+
+                    item.addEventListener('touchend', function (e) {
+                        isPressed = false;
+                        clearTimeout(pressTimer);
+
+                        setTimeout(() => {
+                            this.style.transform = '';
+                            this.style.transition = 'all 0.3s ease';
+                        }, 50);
+                    }, { passive: true });
+
+                    // Cancelar efecto si el usuario arrastra fuera del elemento
+                    item.addEventListener('touchcancel', function (e) {
+                        isPressed = false;
+                        clearTimeout(pressTimer);
+
+                        this.style.transform = '';
+                        this.style.transition = 'all 0.3s ease';
+                    }, { passive: true });
+
+                    // Manejar clics
+                    item.addEventListener('click', function (e) {
+                        if (!this.classList.contains('active')) {
+                            setActiveNavItem(this);
+                        }
+
+                        setTimeout(() => {
+                            // El navegador manejará la navegación automáticamente
+                        }, 100);
+                    });
+                });
+
+                // Manejar cambios de tamaño de ventana
+                window.addEventListener('resize', function () {
+                    const floatingNav = document.getElementById('floatingMobileNav');
+                    const desktopNav = document.getElementById('header-navbar');
+
+                    if (window.innerWidth <= 768) {
+                        if (floatingNav) floatingNav.style.display = 'block';
+                        if (desktopNav) desktopNav.style.display = 'none';
+                    } else {
+                        if (floatingNav) floatingNav.style.display = 'none';
+                        if (desktopNav) desktopNav.style.display = 'block';
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- jQuery debe cargar PRIMERO sin defer -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Dependencias de jQuery -->
+    <script src="vendor/bootstrap/popper.min.js"></script>
+    <script src="vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/owlcarousel/owl.carousel.min.js"></script>
+    <!-- <script src="vendor/stellar/jquery.stellar.js"></script> -->
+    <script src="vendor/isotope/isotope.min.js"></script>
+    <script src="vendor/lightcase/lightcase.js"></script>
+    <script src="vendor/waypoints/waypoint.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+    <!-- App principal al final -->
+    <script src="js/app.min.js"></script>
+
+    <!-- Inicializar AOS -->
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+    </script>
+
+    <!-- Script para el Hero con Scroll Snap entre Secciones -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slideLogo = document.getElementById('slide-logo');
+            const slideContent = document.getElementById('slide-content');
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+
+            let currentSection = 0; // 0 = logo, 1 = contenido
+            let isAnimating = false;
+            let lastWheelTime = 0;
+            const wheelThrottle = 800; // Tiempo mínimo entre cambios de sección (ms)
+
+            // Detectar si es mobile
+            const isMobile = window.innerWidth <= 768;
+
+            // Manejo del indicador de scroll horizontal (mobile)
+            const scrollHintMobile = document.getElementById('scrollHintMobile');
+            let hintHidden = false;
+
+            function hideScrollHint() {
+                if (!hintHidden && scrollHintMobile && isMobile) {
+                    scrollHintMobile.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    scrollHintMobile.style.opacity = '0';
+                    scrollHintMobile.style.transform = 'translateX(-50%) translateY(10px)';
+                    hintHidden = true;
+
+                    setTimeout(() => {
+                        if (scrollHintMobile) {
+                            scrollHintMobile.style.display = 'none';
+                        }
+                    }, 500);
+                }
+            }
+
+            // Ocultar el indicador después de 5 segundos
+            if (isMobile && scrollHintMobile) {
+                setTimeout(hideScrollHint, 5000);
+            }
+
+            // Función para cambiar de sección
+            function goToSection(sectionIndex) {
+                if (isAnimating) return;
+
+                // Ocultar el indicador cuando el usuario interactúe
+                hideScrollHint();
+
+                currentSection = sectionIndex;
+                isAnimating = true;
+
+                // Obtener el contenedor de notificaciones
+                const notificationContainer = document.getElementById('notificationContainer');
+
+                if (sectionIndex === 0) {
+                    // Mostrar logo con blur-in
+                    slideLogo.style.display = 'flex';
+                    slideLogo.style.visibility = 'visible';
+                    slideLogo.classList.remove('blur-out');
+                    slideLogo.classList.add('blur-in');
+
+                    // Ocultar contenido con blur-out
+                    slideContent.classList.remove('blur-in');
+                    slideContent.classList.add('blur-out');
+                    setTimeout(() => {
+                        slideContent.style.visibility = 'hidden';
+                    }, 600);
+
+                    // Mostrar indicador
+                    if (scrollIndicator) {
+                        scrollIndicator.style.opacity = '1';
+                    }
+
+                    // Mostrar notificaciones con animación
+                    if (notificationContainer) {
+                        notificationContainer.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                        notificationContainer.style.opacity = '1';
+                        notificationContainer.style.transform = 'translateX(-50%) translateY(0)';
+                        notificationContainer.style.visibility = 'visible';
+                    }
+
+                } else if (sectionIndex === 1) {
+                    // Ocultar logo con blur-out
+                    slideLogo.classList.remove('blur-in');
+                    slideLogo.classList.add('blur-out');
+                    setTimeout(() => {
+                        slideLogo.style.visibility = 'hidden';
+                    }, 600);
+
+                    // Mostrar contenido con blur-in
+                    slideContent.style.display = 'flex';
+                    slideContent.style.visibility = 'visible';
+                    slideContent.classList.remove('blur-out');
+                    slideContent.classList.add('blur-in');
+
+                    // Ocultar indicador
+                    if (scrollIndicator) {
+                        scrollIndicator.style.opacity = '0';
+                    }
+
+                    // Ocultar notificaciones con animación
+                    if (notificationContainer) {
+                        notificationContainer.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                        notificationContainer.style.opacity = '0';
+                        notificationContainer.style.transform = 'translateX(-50%) translateY(-20px)';
+                        setTimeout(() => {
+                            if (notificationContainer) {
+                                notificationContainer.style.visibility = 'hidden';
+                            }
+                        }, 400);
+                    }
+                }
+
+                // Desbloquear después de la animación
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 600);
+            }
+
+            // Detectar wheel (mouse) para cambiar de sección - SOLO DESKTOP
+            function handleWheel(e) {
+                // En mobile no usar el wheel event
+                if (isMobile) return;
+
+                const now = Date.now();
+
+                // Si está animando, bloquear scroll
+                if (isAnimating) {
+                    e.preventDefault();
+                    return;
+                }
+
+                // Throttle para evitar cambios muy rápidos
+                if (now - lastWheelTime < wheelThrottle) {
+                    e.preventDefault();
+                    return;
+                }
+
+                const delta = e.deltaY;
+
+                // Scroll hacia abajo (delta positivo)
+                if (delta > 0 && currentSection === 0) {
+                    e.preventDefault();
+                    lastWheelTime = now;
+                    goToSection(1);
+                    return;
+                }
+
+                // Scroll hacia arriba (delta negativo)
+                if (delta < 0 && currentSection === 1) {
+                    e.preventDefault();
+                    lastWheelTime = now;
+                    goToSection(0);
+                    return;
+                }
+
+                // Si no hay cambio de sección, prevenir scroll de página
+                e.preventDefault();
+            }
+
+            // Detectar touch para cambiar de sección
+            let touchStartX = 0;
+            let touchEndX = 0;
+            let touchStartY = 0;
+            let touchEndY = 0;
+
+            function handleTouchStart(e) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            }
+
+            function handleTouchMove(e) {
+                touchEndX = e.touches[0].clientX;
+                touchEndY = e.touches[0].clientY;
+            }
+
+            function handleTouchEnd(e) {
+                const now = Date.now();
+
+                if (now - lastWheelTime < wheelThrottle || isAnimating) {
+                    return;
+                }
+
+                const threshold = 50; // Mínimo de px para detectar swipe
+
+                if (isMobile) {
+                    // MOBILE: Swipe horizontal (izquierda/derecha)
+                    const diffX = touchStartX - touchEndX;
+
+                    if (Math.abs(diffX) > threshold) {
+                        if (diffX > 0 && currentSection === 0) {
+                            // Swipe left: ir a contenido
+                            lastWheelTime = now;
+                            goToSection(1);
+                        } else if (diffX < 0 && currentSection === 1) {
+                            // Swipe right: ir a logo
+                            lastWheelTime = now;
+                            goToSection(0);
+                        }
+                    }
+                } else {
+                    // DESKTOP: Swipe vertical (arriba/abajo)
+                    const diffY = touchStartY - touchEndY;
+
+                    if (Math.abs(diffY) > threshold) {
+                        if (diffY > 0 && currentSection === 0) {
+                            // Swipe up: ir a contenido
+                            lastWheelTime = now;
+                            goToSection(1);
+                        } else if (diffY < 0 && currentSection === 1) {
+                            // Swipe down: ir a logo
+                            lastWheelTime = now;
+                            goToSection(0);
+                        }
+                    }
+                }
+            }
+
+            // Detección de teclado
+            function handleKeydown(e) {
+                if (isAnimating) return;
+
+                const now = Date.now();
+                if (now - lastWheelTime < wheelThrottle) return;
+
+                if (isMobile) {
+                    // MOBILE: Flechas izquierda/derecha
+                    if (e.key === 'ArrowRight' && currentSection === 0) {
+                        e.preventDefault();
+                        lastWheelTime = now;
+                        goToSection(1);
+                    } else if (e.key === 'ArrowLeft' && currentSection === 1) {
+                        e.preventDefault();
+                        lastWheelTime = now;
+                        goToSection(0);
+                    }
+                } else {
+                    // DESKTOP: Flechas arriba/abajo o Page Up/Down
+                    if ((e.key === 'ArrowDown' || e.key === 'PageDown') && currentSection === 0) {
+                        e.preventDefault();
+                        lastWheelTime = now;
+                        goToSection(1);
+                    } else if ((e.key === 'ArrowUp' || e.key === 'PageUp') && currentSection === 1) {
+                        e.preventDefault();
+                        lastWheelTime = now;
+                        goToSection(0);
+                    }
+                }
+            }
+
+            // Event listeners con captura en toda la ventana
+            window.addEventListener('wheel', handleWheel, { passive: false, capture: true });
+            window.addEventListener('touchstart', handleTouchStart, { passive: true });
+            window.addEventListener('touchmove', handleTouchMove, { passive: true });
+            window.addEventListener('touchend', handleTouchEnd, { passive: true });
+            window.addEventListener('keydown', handleKeydown);
+
+            // También capturar en el documento para asegurar detección
+            document.addEventListener('wheel', handleWheel, { passive: false });
+
+            // Click en el indicador de scroll
+            if (scrollIndicator) {
+                scrollIndicator.addEventListener('click', function () {
+                    goToSection(1);
+                });
+            }
+
+            // Inicializar en la sección del logo
+            goToSection(0);
+        });
+    </script>
+
+    <!-- Inicializar Lenis Smooth Scroll -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Verificar si Lenis está disponible
+            if (typeof Lenis === 'undefined') {
+                console.warn('Lenis no está cargado');
+                return;
+            }
+
+            // Inicializar Lenis para smooth scroll
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                orientation: 'vertical',
+                gestureOrientation: 'vertical',
+                smoothWheel: true,
+                wheelMultiplier: 1,
+                smoothTouch: false,
+                touchMultiplier: 2,
+                infinite: false,
+            });
+
+            // Función de animación para Lenis
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+
+            requestAnimationFrame(raf);
+
+            // Sincronizar Lenis con eventos de scroll
+            lenis.on('scroll', (e) => {
+                // Actualizar AOS cuando se hace scroll con Lenis
+                if (typeof AOS !== 'undefined') {
+                    AOS.refresh();
+                }
+            });
+
+            // Detectar si estamos en mobile
+            const isMobileDevice = window.innerWidth <= 768;
+
+            // En mobile, Lenis trabaja diferente debido al sistema de swipe horizontal
+            if (isMobileDevice) {
+                // En mobile desactivamos el smooth scroll de Lenis ya que usamos swipe
+                lenis.stop();
+            }
+
+            // Exponer Lenis globalmente
+            window.lenis = lenis;
+
+            // Reiniciar Lenis cuando cambia el tamaño de ventana
+            let resizeTimer;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function () {
+                    const nowMobile = window.innerWidth <= 768;
+                    if (nowMobile) {
+                        lenis.stop();
+                    } else {
+                        lenis.start();
+                    }
+                }, 250);
+            });
+
+            console.log('✅ Lenis Smooth Scroll inicializado');
+        });
+    </script>
+
+    <!-- Sistema de Notificaciones -->
+    <script>
+        /**
+         * SISTEMA DE NOTIFICACIONES EN CÁPSULAS
+         * 
+         * USO BÁSICO:
+         * -----------
+         * // Mostrar notificación de información
+         * window.notifications.info('Título', 'Mensaje');
+         * 
+         * // Mostrar notificación de éxito
+         * window.notifications.success('Operación exitosa', 'Se guardó correctamente');
+         * 
+         * // Mostrar notificación de advertencia
+         * window.notifications.warning('Atención', 'Revisa este dato');
+         * 
+         * // Mostrar notificación de error
+         * window.notifications.error('Error', 'Algo salió mal');
+         * 
+         * USO AVANZADO:
+         * -------------
+         * window.notifications.show({
+         *     type: 'info',              // 'info', 'success', 'warning', 'error'
+         *     title: 'Título',
+         *     message: 'Mensaje',
+         *     badge: 'NUEVO AVISO',      // Badge superior (opcional)
+         *     duration: 5000,            // Milisegundos (0 = no auto-cerrar)
+         *     onClick: () => {           // Acción al hacer click (opcional)
+         *         console.log('Clicked!');
+         *     }
+         * });
+         * 
+         * FUNCIÓN GLOBAL RÁPIDA:
+         * ----------------------
+         * window.showNotification('info', 'Título', 'Mensaje', { duration: 3000 });
+         */
+
+        // Clase para gestionar notificaciones
+        class NotificationSystem {
+            constructor() {
+                this.container = document.getElementById('notificationContainer');
+                this.notifications = [];
+                this.maxNotifications = 5;
+
+                if (!this.container) {
+                    console.error('❌ No se encontró el contenedor de notificaciones!');
+                }
+            }
+
+            // Crear notificación
+            show(options) {
+                const {
+                    type = 'info',
+                    title = 'Notificación',
+                    message = '',
+                    badge = 'NUEVO AVISO',
+                    duration = 5000,
+                    onClick = null,
+                    closable = true
+                } = options;
+
+                // Limitar número de notificaciones
+                if (this.notifications.length >= this.maxNotifications) {
+                    this.removeOldest();
+                }
+
+                // Crear elemento de notificación
+                const notification = document.createElement('div');
+                notification.className = `notification-capsule ${type}`;
+
+                notification.innerHTML = `
+                    <div class="notification-content">
+                        ${badge ? `<div class="notification-badge">${badge}</div>` : ''}
+                        <div class="notification-title">${title}</div>
+                        ${message ? `<div class="notification-message">${message}</div>` : ''}
+                    </div>
+                    ${closable ? '<button class="notification-close">×</button>' : ''}
+                `;
+
+                // Agregar al contenedor
+                this.container.appendChild(notification);
+                this.notifications.push(notification);
+
+                // Evento de click en cerrar
+                if (closable) {
+                    const closeBtn = notification.querySelector('.notification-close');
+                    if (closeBtn) {
+                        closeBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            this.remove(notification);
+                        });
+                    }
+                }
+
+                // Evento de click en la notificación
+                if (onClick) {
+                    notification.style.cursor = 'pointer';
+                    notification.addEventListener('click', () => {
+                        onClick();
+                        this.remove(notification);
+                    });
+                }
+
+                // Auto-eliminar después del tiempo especificado
+                if (duration > 0) {
+                    setTimeout(() => {
+                        this.remove(notification);
+                    }, duration);
+                }
+
+                // Sonido opcional (comentado por defecto)
+                // this.playNotificationSound();
+
+                return notification;
+            }
+
+            // Eliminar notificación
+            remove(notification) {
+                if (!notification || !notification.parentElement) return;
+
+                notification.classList.add('removing');
+
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                    const index = this.notifications.indexOf(notification);
+                    if (index > -1) {
+                        this.notifications.splice(index, 1);
+                    }
+                }, 300);
+            }
+
+            // Eliminar la notificación más antigua
+            removeOldest() {
+                if (this.notifications.length > 0) {
+                    this.remove(this.notifications[0]);
+                }
+            }
+
+            // Limpiar todas las notificaciones
+            clear() {
+                this.notifications.forEach(notification => {
+                    this.remove(notification);
+                });
+            }
+
+            // Reproducir sonido de notificación (opcional)
+            playNotificationSound() {
+                try {
+                    const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwPUKni77dlHQU7k9nxxnkpBSh+zPLaizsKFF+45fGsWhYLSKLh8bllHgU=');
+                    audio.volume = 0.3;
+                    audio.play();
+                } catch (e) {
+                    // Silenciar errores de audio
+                }
+            }
+
+            // Métodos de acceso rápido
+            info(title, message, options = {}) {
+                return this.show({ ...options, type: 'info', title, message });
+            }
+
+            success(title, message, options = {}) {
+                return this.show({ ...options, type: 'success', title, message });
+            }
+
+            warning(title, message, options = {}) {
+                return this.show({ ...options, type: 'warning', title, message });
+            }
+
+            error(title, message, options = {}) {
+                return this.show({ ...options, type: 'error', title, message });
+            }
+        }
+
+        // Inicializar sistema de notificaciones globalmente
+        window.notifications = new NotificationSystem();
+
+        // Sistema de detección de avisos
+        document.addEventListener('DOMContentLoaded', function () {
+            // Verificar si hay avisos disponibles
+            function verificarAvisos() {
+                const modalAnuncio = document.getElementById('modalAnuncio');
+
+                if (modalAnuncio) {
+                    // Mostrar notificación de aviso
+                    mostrarNotificacionAviso();
+                }
+            }
+
+            // Mostrar notificación de aviso
+            function mostrarNotificacionAviso() {
+                setTimeout(() => {
+                    window.notifications.info(
+                        'Bienvenido al semestre Enero-Junio 2026',
+                        '',
+                        {
+                            badge: '',
+                            duration: 0,
+                            closable: false,
+                            onClick: null
+                        }
+                    );
+                }, 3000); // Mostrar después de 3 segundos de cargar la página
+            }
+
+            // Verificar avisos al cargar la página
+            verificarAvisos();
+        });
+
+        // Exponer funciones globales para fácil acceso desde cualquier script
+        window.showNotification = (type, title, message, options = {}) => {
+            return window.notifications.show({ type, title, message, ...options });
+        };
+
+        // Función para mostrar notificación manualmente (útil para testing)
+        window.mostrarNotificacionAviso = function () {
+            window.notifications.info(
+                'Bienvenido al semestre Enero-Junio 2026',
+                '',
+                {
+                    badge: '',
+                    duration: 0,
+                    closable: false,
+                    onClick: null
+                }
+            );
+        };
+    </script>
+
+    <!-- Script para verificar eventos en curso -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Datos de las jornadas (fechas y horarios)
+            const jornadasData = {
+                fecha: '2025-09-11', // Ajustar según la fecha real
+                eventos: [] // Los eventos se agregarán dinámicamente
+            };
+
+            function verificarEventosEnCurso() {
+                const ahora = new Date();
+                const hoy = ahora.toISOString().split('T')[0];
+
+                console.log('=== VERIFICAR EVENTOS ===');
+                console.log('Hoy:', hoy);
+                console.log('Fecha jornadas:', jornadasData.fecha);
+                console.log('Hora actual:', ahora.getHours() + ':' + ahora.getMinutes());
+
+                // Verificar si es el día de las jornadas
+                if (hoy !== jornadasData.fecha) {
+                    console.log('❌ No es el día de las jornadas');
+                    return null;
+                }
+
+                let eventoProximo = null;
+                let minutosParaEvento = 0;
+                let minutosTranscurridos = 0;
+                let estado = null; // 'countdown', 'en_curso', 'finalizado'
+
+                jornadasData.eventos.forEach(evento => {
+                    const [hora, minutos] = evento.hora.split(':');
+                    const horaEvento = new Date();
+                    horaEvento.setHours(parseInt(hora), parseInt(minutos), 0, 0);
+
+                    const diferenciaMs = ahora - horaEvento;
+                    const diferenciaMinutos = Math.floor(diferenciaMs / (1000 * 60));
+
+                    console.log('Evento:', evento.titulo, 'Hora:', evento.hora);
+                    console.log('Diferencia minutos:', diferenciaMinutos);
+
+                    // Si el evento está en curso (0 a 60 minutos después)
+                    if (diferenciaMinutos >= 0 && diferenciaMinutos < 60) {
+                        console.log('✅ Evento en curso detectado');
+                        if (!eventoProximo || diferenciaMinutos < minutosTranscurridos) {
+                            eventoProximo = evento;
+                            minutosTranscurridos = diferenciaMinutos;
+                            estado = 'en_curso';
+                        }
+                    }
+                    // Si el evento está próximo (30 minutos antes a 0 minutos)
+                    else if (diferenciaMinutos >= -30 && diferenciaMinutos < 0) {
+                        console.log('⏰ Evento próximo detectado');
+                        if (!eventoProximo) {
+                            eventoProximo = evento;
+                            minutosParaEvento = Math.abs(diferenciaMinutos);
+                            estado = 'countdown';
+                        }
+                    } else {
+                        console.log('❌ Evento fuera de rango:', diferenciaMinutos);
+                    }
+                });
+
+                if (eventoProximo) {
+                    const resultado = {
+                        ...eventoProximo,
+                        minutosTranscurridos,
+                        minutosParaEvento,
+                        estado
+                    };
+                    console.log('✅ Evento próximo encontrado:', resultado);
+                    return resultado;
+                }
+
+                console.log('❌ No hay eventos próximos');
+                return null;
+            }
+
+        });
+    </script>
+
+    <!-- Script para eliminar FOUC - DESACTIVADO -->
+    <!-- <script>
+        // Función para mostrar el contenido una vez que el CSS esté cargado
+        function showContent() {
+            document.body.classList.remove('fouc-hidden');
+            document.body.classList.add('fouc-loaded');
+        }
+        
+        // Mostrar contenido cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pequeño delay para asegurar que el CSS esté cargado
+            setTimeout(showContent, 100);
+        });
+        
+        // Fallback: mostrar contenido después de un tiempo máximo
+        setTimeout(showContent, 1000);
+        
+        // Mostrar contenido cuando todas las imágenes estén cargadas
+        window.addEventListener('load', function() {
+            showContent();
+        });
+
+    </script> -->
+
+    <!-- Script para el modal de anuncio -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const modalAnuncio = document.getElementById('modalAnuncio');
+            const cerrarAnuncio = document.getElementById('cerrarAnuncio');
+            const masInformacion = document.getElementById('masInformacion');
+
+            // Función para abrir el modal (se llamará desde la notificación)
+            window.abrirModalAnuncio = function () {
+                if (modalAnuncio) {
+                    modalAnuncio.classList.add('show');
+                }
+            };
+
+            // Cerrar modal al hacer clic en la X
+            if (cerrarAnuncio) {
+                cerrarAnuncio.addEventListener('click', function () {
+                    modalAnuncio.classList.remove('show');
+                });
+            }
+
+            // Cerrar modal al hacer clic fuera del contenido
+            if (modalAnuncio) {
+                modalAnuncio.addEventListener('click', function (e) {
+                    if (e.target === modalAnuncio) {
+                        modalAnuncio.classList.remove('show');
+                    }
+                });
+            }
+
+            // Acción del botón "Contestar Encuesta"
+            if (masInformacion) {
+                masInformacion.addEventListener('click', function () {
+                    // Abrir encuesta de Microsoft Forms en nueva pestaña
+                    window.open('https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAADZA8lRUNzdWN0JOTzRCR09aR1VKQVVNWUg0RVhYTS4u', '_blank');
+                    // Cerrar el modal
+                    modalAnuncio.classList.remove('show');
+                });
+            }
+
+            // Cerrar modal con tecla Escape
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && modalAnuncio && modalAnuncio.classList.contains('show')) {
+                    modalAnuncio.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

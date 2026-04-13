@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Nodos Accesibilidad - UBICATEC</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .stats-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .node-list {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+        }
+
+        .node-item {
+            padding: 0.75rem;
+            border-bottom: 1px solid #f1f3f4;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .node-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .node-item:last-child {
+            border-bottom: none;
+        }
+
+        .node-type {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .tipo-acceso {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .tipo-edificio {
+            background-color: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .tipo-nodo {
+            background-color: #e8f5e8;
+            color: #388e3c;
+        }
+
+        .tipo-interseccion {
+            background-color: #fff3e0;
+            color: #f57c00;
+        }
+
+        .ruta-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .ruta-azul {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .ruta-naranja {
+            background-color: #e67e22;
+            color: white;
+        }
+
+        .map-container {
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-controls {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .evidence-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .evidence-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #007bff;
+        }
+
+        .btn-filter {
+            margin: 0.25rem;
+        }
+
+        .coords-display {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1>Test de Nodos de Accesibilidad</h1>
+                    <p class="mb-0">Visualización y prueba del sistema de rutas accesibles UBICATEC</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Estado del Sistema -->
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="stats-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Estado del Sistema</h5>
+                        <span id="estado-sistema" class="badge bg-secondary">Cargando...</span>
+                    </div>
+                    <div id="mensaje-estado" class="mt-2 text-muted">
+                        Inicializando sistema de nodos de accesibilidad...
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estadísticas Generales -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="stats-card text-center">
+                    <h3 id="total-nodos" class="text-primary">0</h3>
+                    <p class="mb-0">Total Nodos</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card text-center">
+                    <h3 id="total-aristas" class="text-success">0</h3>
+                    <p class="mb-0">Total Aristas</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card text-center">
+                    <h3 id="total-edificios" class="text-info">0</h3>
+                    <p class="mb-0">Edificios</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card text-center">
+                    <h3 id="total-rutas" class="text-warning">0</h3>
+                    <p class="mb-0">Rutas</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controles de Filtrado -->
+        <div class="filter-controls">
+            <h5>Controles de Filtrado de Rutas</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="selectEdificio" class="form-label">Edificio de Destino:</label>
+                    <select id="selectEdificio" class="form-select">
+                        <option value="">Todos los edificios</option>
+                        <option value="30">Edificio 30</option>
+                        <option value="36">Edificio 36</option>
+                        <option value="50">Edificio 50</option>
+                        <option value="1">Edificio 1</option>
+                        <option value="2">Edificio 2</option>
+                        <option value="17">Edificio 17</option>
+                        <option value="28">Edificio 28</option>
+                        <option value="19">Edificio 19</option>
+                        <option value="25">Edificio 25</option>
+                        <option value="20">Edificio 20</option>
+                        <option value="27">Edificio 27</option>
+                        <option value="49">Edificio 49</option>
+                        <option value="41">Edificio 41</option>
+                        <option value="51">Edificio 51</option>
+                        <option value="53">Edificio 53</option>
+                        <option value="45">Edificio 45</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="selectAcceso" class="form-label">Punto de Acceso:</label>
+                    <select id="selectAcceso" class="form-select">
+                        <option value="">Todos los accesos</option>
+                        <option value="acceso_visitantes">Acceso Visitantes</option>
+                        <option value="acceso_hangar">Acceso Hangar</option>
+                        <option value="acceso_principal">Acceso Principal</option>
+                        <option value="acceso_maravillas">Acceso Maravillas</option>
+                        <option value="acceso_estacionamiento_1">Acceso Estacionamiento 1</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <button id="btnAplicarFiltro" class="btn btn-primary">Aplicar Filtro</button>
+                    <button id="btnLimpiarFiltro" class="btn btn-secondary">Limpiar Filtro</button>
+                    <button id="btnMostrarTodos" class="btn btn-success">Mostrar Todos</button>
+                    <hr>
+                    <button id="btnTestConectividad" class="btn btn-danger">⚠️ Test Conectividad Total</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Lista de Nodos -->
+            <div class="col-md-4">
+                <div class="stats-card">
+                    <h5>Lista de Nodos</h5>
+                    <div class="mb-3">
+                        <input type="text" id="searchNodos" class="form-control" placeholder="Buscar nodos...">
+                    </div>
+                    <div id="nodosList" class="node-list">
+                        <!-- Los nodos se cargarán aquí dinámicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mapa -->
+            <div class="col-md-8">
+                <div class="stats-card">
+                    <h5>Mapa Interactivo</h5>
+                    <div id="map" class="map-container"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Evidencia -->
+        <div class="evidence-section">
+            <h5>Evidencia del Filtrado</h5>
+            <div id="evidenceContainer">
+                <div class="evidence-item">
+                    <h6>Estado Actual:</h6>
+                    <p id="currentFilter" class="mb-0">Sin filtros aplicados</p>
+                </div>
+            </div>
+            <button id="btnDocumentarEvidencia" class="btn btn-info">Documentar Evidencia</button>
+        </div>
+    </div>
+
+    <!-- jQuery (requerido por Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="vendor/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Scripts del proyecto -->
+    <script src="js/mapa-accesible.js"></script>
+
+    <script>
+        // Variables globales
+        let mapa;
+        let marcadoresNodos = [];
+        let nodosActuales = [];
+        let aristasActuales = [];
+        let filtroActual = { edificio: null, acceso: null };
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('🚀 Inicializando página de prueba de nodos...');
+            actualizarEstadoSistema('Inicializando', 'Cargando scripts y verificando funciones...', 'warning');
+
+            // Esperar un poco para que se carguen todos los scripts
+            setTimeout(() => {
+                // Verificar que el grafo esté disponible
+                if (typeof grafoAccesible === 'undefined') {
+                    actualizarEstadoSistema('Error', 'Grafo accesible no está definido', 'error');
+                    return;
+                }
+
+                // Inicializar el grafo
+                if (typeof inicializarGrafoAccesible === 'function') {
+                    inicializarGrafoAccesible(grafoAccesible);
+                } else {
+                    actualizarEstadoSistema('Error', 'Función inicializarGrafoAccesible no disponible', 'error');
+                    return;
+                }
+
+                // Inicializar mapa
+                inicializarMapa();
+
+                // Cargar datos iniciales
+                cargarDatosIniciales();
+
+                // Configurar eventos
+                configurarEventos();
+
+                // EVENTO TEST TOTAL
+                const btnTest = document.getElementById('btnTestConectividad');
+                if (btnTest) {
+                    btnTest.addEventListener('click', testarConectividadTotal);
+                }
+
+                console.log('✅ Página de prueba inicializada correctamente');
+
+                console.log('✅ Página de prueba inicializada correctamente');
+            }, 1000);
+        });
+
+        function inicializarMapa() {
+            // Coordenadas del centro del campus
+            const centroCampus = [19.0683, -98.1700];
+
+            // Crear mapa
+            mapa = L.map('map').setView(centroCampus, 17);
+
+            // Agregar capa de tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(mapa);
+
+            console.log('🗺️ Mapa inicializado');
+        }
+
+        // ==========================================
+        //  LÓGICA DE TESTEO DE CONECTIVIDAD TOTAL
+        // ==========================================
+        function testarConectividadTotal() {
+            if (!grafoAccesible) {
+                alert("Grafo no cargado.");
+                return;
+            }
+
+            console.log("🚀 Iniciando Test de Conectividad Total...");
+
+            // Obtener todos los IDs de accesos y edificios
+            const accessos = Object.values(grafoAccesible.accesos); // 'azul_1', 'naranja_1', etc.
+            const edificios = Object.values(grafoAccesible.edificios); // 'azul_9', 'naranja_12', etc.
+
+            // Unir todos los puntos de interés
+            const puntosInteres = [...accessos, ...edificios];
+
+            let totalTests = 0;
+            let fallos = [];
+            let rutas_ok = 0;
+
+            console.log(`🧪 Probando combinaciones entre ${puntosInteres.length} puntos de interés...`);
+
+            // Probar TODA combinación posible (NxN)
+            puntosInteres.forEach(inicioId => {
+                puntosInteres.forEach(finId => {
+                    if (inicioId !== finId) {
+                        totalTests++;
+
+                        // Usamos una versión local de calcularRutaGrafo para este test
+                        const ruta = calcularRutaGrafoLocal(inicioId, finId);
+
+                        if (!ruta || ruta.length === 0) {
+                            fallos.push(`${inicioId} -> ${finId}`);
+                            console.warn(`❌ Fallo ruta: ${inicioId} -> ${finId}`);
+                        } else {
+                            rutas_ok++;
+                        }
+                    }
+                });
+            });
+
+            if (fallos.length === 0) {
+                alert(`✅ ÉXITO ABSOLUTO: Se verificaron ${totalTests} rutas. \nTodas las conexiones entre accesos y edificios son posibles.`);
+                console.log('✅ TEST SUPERADO SIN ERRORES');
+            } else {
+                console.error("❌ Fallos de conectividad reportados:", fallos);
+                alert(`❌ PENDIENTE: ${fallos.length} rutas fallaron. \nRevisa la consola (F12) para ver la lista exacta.`);
+            }
+        }
+
+        // Versión local de BFS/Dijkstra (misma lógica que ruta_accesible.html)
+        function calcularRutaGrafoLocal(inicioId, finId) {
+            const aristas = obtenerAristas(); // De mapa-accesible.js
+            const nodos = obtenerTodosLosNodos(); // De mapa-accesible.js
+
+            // Construir adyacencia
+            const adyacencia = {};
+            nodos.forEach(n => adyacencia[n.id] = []);
+
+            aristas.forEach(a => {
+                // Permitir ir y venir si es peatonal
+                if (!adyacencia[a.desde]) adyacencia[a.desde] = [];
+                if (!adyacencia[a.hacia]) adyacencia[a.hacia] = [];
+
+                // IMPORTANTE: Aquí NO filtramos por permisos porque queremos probar
+                // la conectividad FÍSICA primero (como descubrimos con la isla azul).
+                // Si quisieras probar permisos, añadirías checs de 'accesos'/'edificiosAccesibles'.
+                // Pero el usuario pidió "absoluta conexión entre todas las aristas".
+
+                // Grafo no dirigido (bidireccional)
+                adyacencia[a.desde].push({ id: a.hacia });
+                adyacencia[a.hacia].push({ id: a.desde });
+            });
+
+            // BFS Simple
+            const queue = [inicioId];
+            const visitados = new Set([inicioId]);
+            const anteriores = {};
+
+            while (queue.length > 0) {
+                const actual = queue.shift();
+
+                if (actual === finId) {
+                    // Reconstruir y devolver
+                    const camino = [];
+                    let curr = finId;
+                    while (curr) {
+                        camino.unshift(curr);
+                        curr = anteriores[curr];
+                    }
+                    return camino;
+                }
+
+                if (adyacencia[actual]) {
+                    for (const vecino of adyacencia[actual]) {
+                        if (!visitados.has(vecino.id)) {
+                            visitados.add(vecino.id);
+                            anteriores[vecino.id] = actual;
+                            queue.push(vecino.id);
+                        }
+                    }
+                }
+            }
+            return []; // No se encontró ruta
+        }
+
+        function actualizarEstadoSistema(estado, mensaje, tipo = 'info') {
+            const badge = document.getElementById('estado-sistema');
+            const mensajeElement = document.getElementById('mensaje-estado');
+
+            badge.textContent = estado;
+            mensajeElement.textContent = mensaje;
+
+            // Cambiar color según el tipo
+            badge.className = 'badge';
+            switch (tipo) {
+                case 'success':
+                    badge.classList.add('bg-success');
+                    break;
+                case 'error':
+                    badge.classList.add('bg-danger');
+                    break;
+                case 'warning':
+                    badge.classList.add('bg-warning');
+                    break;
+                default:
+                    badge.classList.add('bg-info');
+            }
+        }
+
+        function cargarDatosIniciales() {
+            // Verificar que las funciones estén disponibles
+            if (typeof obtenerTodosLosNodos !== 'function' || typeof obtenerAristas !== 'function') {
+                console.error('❌ Funciones básicas no disponibles');
+                actualizarEstadoSistema('Error', 'Las funciones básicas no están disponibles. Verifica que mapa-accesible.js se haya cargado correctamente.', 'error');
+                return;
+            }
+
+            try {
+                // Obtener datos del grafo
+                nodosActuales = obtenerTodosLosNodos();
+                aristasActuales = obtenerAristas();
+
+                // Actualizar estadísticas
+                actualizarEstadisticas();
+
+                // Mostrar todos los nodos inicialmente
+                mostrarTodosLosNodos();
+
+                actualizarEstadoSistema('Listo', `Sistema cargado correctamente: ${nodosActuales.length} nodos, ${aristasActuales.length} aristas`, 'success');
+                console.log(`📊 Datos cargados: ${nodosActuales.length} nodos, ${aristasActuales.length} aristas`);
+            } catch (error) {
+                console.error('❌ Error cargando datos:', error);
+                actualizarEstadoSistema('Error', `Error cargando datos: ${error.message}`, 'error');
+            }
+        }
+
+        function actualizarEstadisticas() {
+            const stats = obtenerInformacionGrafo();
+
+            document.getElementById('total-nodos').textContent = stats.estadisticas.totalNodos;
+            document.getElementById('total-aristas').textContent = stats.estadisticas.totalAristas;
+            document.getElementById('total-edificios').textContent = stats.estadisticas.totalEdificios;
+            document.getElementById('total-rutas').textContent = stats.estadisticas.totalRutas;
+        }
+
+        function mostrarTodosLosNodos() {
+            limpiarMapa();
+            mostrarNodosEnLista(nodosActuales);
+            dibujarNodosEnMapa(nodosActuales);
+            actualizarEvidencia('Mostrando todos los nodos sin filtros');
+        }
+
+        function mostrarNodosEnLista(nodos) {
+            const container = document.getElementById('nodosList');
+            container.innerHTML = '';
+
+            // Agrupar nodos por ruta
+            const nodosPorRuta = {};
+            nodos.forEach(nodo => {
+                const ruta = nodo.ruta || 'sin_ruta';
+                if (!nodosPorRuta[ruta]) {
+                    nodosPorRuta[ruta] = [];
+                }
+                nodosPorRuta[ruta].push(nodo);
+            });
+
+            // Mostrar nodos agrupados
+            Object.keys(nodosPorRuta).forEach(ruta => {
+                const nodosRuta = nodosPorRuta[ruta];
+
+                // Header de ruta
+                const headerDiv = document.createElement('div');
+                headerDiv.className = 'node-item';
+                headerDiv.style.backgroundColor = '#e9ecef';
+                headerDiv.style.fontWeight = 'bold';
+                headerDiv.innerHTML = `
+                    <span class="ruta-badge ruta-${ruta}">${ruta}</span>
+                    <small class="text-muted">(${nodosRuta.length} nodos)</small>
+                `;
+                container.appendChild(headerDiv);
+
+                // Nodos de la ruta
+                nodosRuta.forEach(nodo => {
+                    const nodoDiv = document.createElement('div');
+                    nodoDiv.className = 'node-item';
+                    nodoDiv.innerHTML = `
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <strong>${nodo.id}</strong>
+                                <span class="node-type tipo-${nodo.tipo}">${nodo.tipo}</span>
+                                <br>
+                                <small class="text-muted">${nodo.descripcion}</small>
+                                <br>
+                                <span class="coords-display">${nodo.coords[0].toFixed(6)}, ${nodo.coords[1].toFixed(6)}</span>
+                            </div>
+                        </div>
+                    `;
+
+                    // Evento click para centrar en el mapa
+                    nodoDiv.addEventListener('click', () => {
+                        mapa.setView(nodo.coords, 19);
+                        // Resaltar el marcador
+                        resaltarMarcador(nodo.id);
+                    });
+
+                    container.appendChild(nodoDiv);
+                });
+            });
+        }
+
+        function dibujarNodosEnMapa(nodos) {
+            // Colores para cada ruta
+            const coloresRutas = {
+                'azul': '#3498db',
+                'naranja': '#e67e22',
+                'sin_ruta': '#95a5a6'
+            };
+
+            nodos.forEach(nodo => {
+                const color = coloresRutas[nodo.ruta] || '#95a5a6';
+
+                const marcador = L.circleMarker(nodo.coords, {
+                    radius: 8,
+                    fillColor: color,
+                    color: '#fff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(mapa);
+
+                // Tooltip con información del nodo
+                marcador.bindTooltip(`
+                    <strong>${nodo.id}</strong><br>
+                    ${nodo.descripcion}<br>
+                    <small>Tipo: ${nodo.tipo} | Ruta: ${nodo.ruta}</small>
+                `, {
+                    permanent: false,
+                    direction: 'top'
+                });
+
+                // Guardar referencia del marcador
+                marcador.nodoId = nodo.id;
+                marcadoresNodos.push(marcador);
+            });
+        }
+
+        function aplicarFiltro() {
+            const edificio = document.getElementById('selectEdificio').value;
+            const acceso = document.getElementById('selectAcceso').value;
+
+            filtroActual = { edificio, acceso };
+
+            console.log(`🔍 Aplicando filtro: edificio=${edificio}, acceso=${acceso}`);
+
+            let nodosFiltrados = [];
+            let aristasFiltradas = [];
+
+            // Verificar que las funciones estén disponibles
+            if (typeof obtenerNodosRelevantes !== 'function' || typeof obtenerAristasPorEdificio !== 'function') {
+                console.error('❌ Funciones de filtrado no disponibles');
+                alert('Error: Las funciones de filtrado no están disponibles. Verifica que mapa-accesible.js se haya cargado correctamente.');
+                return;
+            }
+
+            if (edificio && acceso) {
+                // Filtro específico por edificio y acceso
+                nodosFiltrados = obtenerNodosRelevantes(parseInt(edificio), acceso);
+                aristasFiltradas = obtenerAristasPorEdificio(parseInt(edificio), acceso);
+            } else if (edificio) {
+                // Filtro por edificio
+                nodosFiltrados = obtenerNodosRelevantes(parseInt(edificio));
+                aristasFiltradas = obtenerAristasPorEdificio(parseInt(edificio));
+            } else if (acceso) {
+                // Filtro por acceso
+                nodosFiltrados = obtenerTodosLosNodos(); // Por ahora mostrar todos
+                aristasFiltradas = obtenerAristas();
+            } else {
+                // Sin filtros
+                nodosFiltrados = obtenerTodosLosNodos();
+                aristasFiltradas = obtenerAristas();
+            }
+
+            // Actualizar visualización
+            limpiarMapa();
+            mostrarNodosEnLista(nodosFiltrados);
+            dibujarNodosEnMapa(nodosFiltrados);
+            dibujarAristasEnMapa(aristasFiltradas);
+
+            // Actualizar evidencia
+            const descripcionFiltro = edificio && acceso ?
+                `Filtro aplicado: Edificio ${edificio} desde ${acceso}` :
+                edificio ? `Filtro aplicado: Edificio ${edificio}` :
+                    acceso ? `Filtro aplicado: Acceso ${acceso}` :
+                        'Sin filtros aplicados';
+
+            actualizarEvidencia(descripcionFiltro, {
+                nodosMostrados: nodosFiltrados.length,
+                aristasMostradas: aristasFiltradas.length,
+                edificio: edificio,
+                acceso: acceso
+            });
+
+            console.log(`✅ Filtro aplicado: ${nodosFiltrados.length} nodos, ${aristasFiltradas.length} aristas`);
+        }
+
+        function dibujarAristasEnMapa(aristas) {
+            // Colores para cada ruta
+            const coloresRutas = {
+                'azul': '#3498db',
+                'naranja': '#e67e22'
+            };
+
+            aristas.forEach(arista => {
+                const nodoDesde = obtenerNodoPorId(arista.desde);
+                const nodoHacia = obtenerNodoPorId(arista.hacia);
+
+                if (nodoDesde && nodoHacia) {
+                    const color = coloresRutas[arista.ruta] || '#95a5a6';
+
+                    L.polyline([nodoDesde.coords, nodoHacia.coords], {
+                        color: color,
+                        weight: 3,
+                        opacity: 0.7
+                    }).addTo(mapa);
+                }
+            });
+        }
+
+        function limpiarMapa() {
+            // Limpiar marcadores
+            marcadoresNodos.forEach(marcador => {
+                mapa.removeLayer(marcador);
+            });
+            marcadoresNodos = [];
+
+            // Limpiar polylines (aristas)
+            mapa.eachLayer(layer => {
+                if (layer instanceof L.Polyline) {
+                    mapa.removeLayer(layer);
+                }
+            });
+        }
+
+        function resaltarMarcador(nodoId) {
+            // Quitar resaltado anterior
+            marcadoresNodos.forEach(marcador => {
+                marcador.setStyle({
+                    radius: 8,
+                    weight: 2
+                });
+            });
+
+            // Resaltar el marcador seleccionado
+            const marcador = marcadoresNodos.find(m => m.nodoId === nodoId);
+            if (marcador) {
+                marcador.setStyle({
+                    radius: 12,
+                    weight: 3,
+                    color: '#ff0000'
+                });
+            }
+        }
+
+        function actualizarEvidencia(descripcion, datos = {}) {
+            document.getElementById('currentFilter').textContent = descripcion;
+
+            // Agregar detalles si hay datos
+            if (Object.keys(datos).length > 0) {
+                const detalles = document.createElement('div');
+                detalles.className = 'mt-2';
+                detalles.innerHTML = `
+                    <small class="text-muted">
+                        Nodos mostrados: ${datos.nodosMostrados || 0} | 
+                        Aristas mostradas: ${datos.aristasMostradas || 0}
+                        ${datos.edificio ? ` | Edificio: ${datos.edificio}` : ''}
+                        ${datos.acceso ? ` | Acceso: ${datos.acceso}` : ''}
+                    </small>
+                `;
+                document.getElementById('currentFilter').appendChild(detalles);
+            }
+        }
+
+        function configurarEventos() {
+            // Botón aplicar filtro
+            document.getElementById('btnAplicarFiltro').addEventListener('click', aplicarFiltro);
+
+            // Botón limpiar filtro
+            document.getElementById('btnLimpiarFiltro').addEventListener('click', () => {
+                document.getElementById('selectEdificio').value = '';
+                document.getElementById('selectAcceso').value = '';
+                mostrarTodosLosNodos();
+            });
+
+            // Botón mostrar todos
+            document.getElementById('btnMostrarTodos').addEventListener('click', mostrarTodosLosNodos);
+
+            // Búsqueda de nodos
+            document.getElementById('searchNodos').addEventListener('input', (e) => {
+                const termino = e.target.value.toLowerCase();
+                const nodosFiltrados = nodosActuales.filter(nodo =>
+                    nodo.id.toLowerCase().includes(termino) ||
+                    nodo.descripcion.toLowerCase().includes(termino) ||
+                    nodo.tipo.toLowerCase().includes(termino)
+                );
+                mostrarNodosEnLista(nodosFiltrados);
+            });
+
+            // Botón documentar evidencia
+            document.getElementById('btnDocumentarEvidencia').addEventListener('click', () => {
+                documentarEvidencia();
+            });
+        }
+
+        function documentarEvidencia() {
+            const timestamp = new Date().toLocaleString();
+            const evidencia = {
+                timestamp: timestamp,
+                filtro: filtroActual,
+                estadisticas: {
+                    totalNodos: nodosActuales.length,
+                    nodosMostrados: document.querySelectorAll('.node-item').length - document.querySelectorAll('.node-item[style*="background-color: #e9ecef"]').length,
+                    edificio: filtroActual.edificio,
+                    acceso: filtroActual.acceso
+                }
+            };
+
+            console.log('📋 Evidencia documentada:', evidencia);
+
+            // Agregar a la sección de evidencia
+            const evidenceContainer = document.getElementById('evidenceContainer');
+            const nuevaEvidencia = document.createElement('div');
+            nuevaEvidencia.className = 'evidence-item';
+            nuevaEvidencia.innerHTML = `
+                <h6>Evidencia - ${timestamp}</h6>
+                <p><strong>Filtro:</strong> ${JSON.stringify(filtroActual)}</p>
+                <p><strong>Estadísticas:</strong> ${JSON.stringify(evidencia.estadisticas)}</p>
+                <button class="btn btn-sm btn-outline-danger" onclick="this.parentElement.remove()">Eliminar</button>
+            `;
+
+            evidenceContainer.appendChild(nuevaEvidencia);
+
+            alert('Evidencia documentada en la consola y en la sección de evidencia');
+        }
+    </script>
+</body>
+
+</html>

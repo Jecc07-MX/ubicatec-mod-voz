@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ubica tu Aula</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Optimizaciones de rendimiento -->
+    <meta name="description" content="Encuentra tu aula en el campus del TecNM Puebla">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ubicatec.netlify.app/aula.html">
+
+    <!-- DNS prefetch para recursos externos -->
+    <link rel="dns-prefetch" href="//unpkg.com">
+    <link rel="dns-prefetch" href="//ajax.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+
+    <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/markers.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+
+    <style>
+        /* Estilos para la navbar con transparencia */
+        #header-navbar {
+            background-color: rgba(12, 56, 114, 0.55) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding-top: 0.5rem !important;
+            padding-bottom: 0.5rem !important;
+        }
+
+        /* Estilos para el texto de los botones de la navbar */
+        #header-navbar .nav-link {
+            font-weight: bold !important;
+            font-family: 'Lato', sans-serif !important;
+            font-size: 15px !important;
+        }
+
+        #header-navbar .dropdown-toggle {
+            font-weight: bold !important;
+            font-family: 'Lato', sans-serif !important;
+            font-size: 15px !important;
+        }
+
+        /* Estilos para el logo de UBICATEC */
+        #header-navbar .navbar-brand img {
+            height: 35px !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background:
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                #042962;
+            color: white;
+            padding: 100px 0 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+            margin-top: 20px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: white;
+            line-height: 1.1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* Responsive Design para móviles - Hero Section */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+                line-height: 1.2;
+                margin-bottom: 15px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
+            }
+
+            .hero-section {
+                padding: 60px 0 40px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-section {
+                padding: 50px 0 30px 0;
+            }
+        }
+
+        /* Floating Mobile Navigation - Estilo Neumórfico - INFERIOR CENTRAL */
+        .floating-mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10000;
+            width: 95%;
+            max-width: 400px;
+            /* Aumentado para acomodar botones separados */
+        }
+
+        .nav-container {
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 50%, rgba(255, 255, 255, 0.02) 100%),
+                rgba(255, 255, 255, 0.005);
+            border-radius: 22px;
+            padding: 8px 16px;
+            /* Aumentado padding horizontal */
+            display: flex;
+            justify-content: space-between;
+            /* Cambiado de space-around a space-between */
+            align-items: center;
+            gap: 12px;
+            /* Agregado gap para separar botones */
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, 0.12),
+                0 12px 25px rgba(0, 0, 0, 0.08),
+                0 6px 12px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+                inset 1px 0 0 rgba(255, 255, 255, 0.2),
+                inset -1px 0 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(50px) saturate(200%) brightness(110%);
+            -webkit-backdrop-filter: blur(50px) saturate(200%) brightness(110%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.05) 0%,
+                    rgba(255, 255, 255, 0.01) 30%,
+                    rgba(255, 255, 255, 0.005) 50%,
+                    rgba(255, 255, 255, 0.01) 70%,
+                    rgba(255, 255, 255, 0.04) 100%);
+            border-radius: 28px;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 12px;
+            border-radius: 18px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            min-width: 56px;
+            cursor: pointer;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .nav-item:hover {
+            color: #ffffff;
+            transform: translateY(-3px) scale(1.02);
+            text-decoration: none;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%),
+                rgba(255, 255, 255, 0.01);
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.12),
+                0 5px 15px rgba(0, 0, 0, 0.08),
+                0 2px 8px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.15),
+                inset 1px 0 0 rgba(255, 255, 255, 0.2),
+                inset -1px 0 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px) saturate(130%);
+            -webkit-backdrop-filter: blur(15px) saturate(130%);
+        }
+
+        .nav-item:active {
+            transform: translateY(-1px) scale(0.98);
+            transition: all 0.1s ease;
+        }
+
+        .nav-item.active {
+            /* Sin estilos especiales - se ve igual que los demás */
+        }
+
+        .nav-item.active:hover {
+            /* Usa el mismo hover que los elementos normales */
+        }
+
+        .nav-item.active::before {
+            /* Sin pseudo-elemento especial - todos se ven iguales */
+        }
+
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            z-index: 3;
+        }
+
+        .nav-item.active .nav-icon {
+            /* Sin estilos especiales - todos los iconos se ven iguales */
+        }
+
+        .nav-item:hover .nav-icon {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+        .nav-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            white-space: nowrap;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            z-index: 3;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-item.active .nav-label {
+            /* Sin estilos especiales - todo el texto se ve igual */
+        }
+
+        /* Efectos táctiles para móviles */
+        .nav-item:active {
+            transform: translateY(-1px) scale(0.97);
+            background: rgba(255, 255, 255, 0.04);
+            transition: all 0.1s ease;
+        }
+
+        .nav-item.active:active {
+            /* Usa el mismo efecto táctil que los elementos normales */
+        }
+
+        /* Mostrar solo en móvil */
+        @media (max-width: 768px) {
+            .floating-mobile-nav {
+                display: block !important;
+                animation: slideInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+
+            /* Ajustes para pantallas muy pequeñas */
+            @media (max-width: 480px) {
+                .floating-mobile-nav {
+                    width: 96%;
+                    max-width: 380px;
+                    /* Aumentado para acomodar botones separados */
+                    bottom: 18px;
+                }
+
+                .nav-container {
+                    padding: 7px 12px;
+                    /* Aumentado padding horizontal */
+                    border-radius: 20px;
+                    gap: 10px;
+                    /* Agregado gap para pantallas pequeñas */
+                    backdrop-filter: blur(45px) saturate(190%) brightness(105%);
+                    -webkit-backdrop-filter: blur(45px) saturate(190%) brightness(105%);
+                }
+
+                .nav-item {
+                    padding: 7px 9px;
+                    min-width: 48px;
+                    border-radius: 16px;
+                }
+
+                .nav-icon {
+                    font-size: 17px;
+                    margin-bottom: 3px;
+                }
+
+                .nav-label {
+                    font-size: 9.5px;
+                    font-weight: 600;
+                }
+            }
+
+            /* Ajustes para pantallas extra pequeñas */
+            @media (max-width: 375px) {
+                .floating-mobile-nav {
+                    width: 97%;
+                    max-width: 360px;
+                    /* Aumentado para acomodar botones separados */
+                    bottom: 16px;
+                }
+
+                .nav-container {
+                    padding: 6px 10px;
+                    /* Aumentado padding horizontal */
+                    border-radius: 18px;
+                    gap: 8px;
+                    /* Agregado gap para pantallas extra pequeñas */
+                }
+
+                .nav-item {
+                    padding: 6px 7px;
+                    min-width: 44px;
+                }
+
+                .nav-icon {
+                    font-size: 15px;
+                }
+
+                .nav-label {
+                    font-size: 9px;
+                }
+            }
+        }
+
+        /* Animación de entrada desde abajo */
+        @keyframes slideInUp {
+            from {
+                transform: translateX(-50%) translateY(100px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Cambiar color de fondo del body para eliminar borde blanco */
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        html {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+
+        /* Aplicar fondo azul a todos los contenedores principales */
+        .container {
+            background-color: transparent !important;
+        }
+
+        .text-center {
+            background-color: transparent !important;
+        }
+
+        /* Eliminar cualquier fondo blanco de elementos */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Ocultar navbar desktop en móvil */
+        @media (max-width: 768px) {
+            #header-navbar {
+                display: none !important;
+            }
+
+            #mapa {
+                padding-top: 1rem !important;
+            }
+        }
+
+        /* Estilos modernos para el campo de búsqueda */
+        .search-wrapper {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modern-search {
+            width: 100%;
+            max-width: 1200px;
+            padding: 18px 25px 18px 55px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+            position: relative;
+        }
+
+        .modern-search::before {
+            content: "🔍";
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            font-size: 16px;
+            color: #3498db;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+
+
+        .modern-search:hover {
+            border-color: #3498db;
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .modern-search:focus {
+            border-color: #2980b9;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .modern-search::placeholder {
+            color: #6c757d;
+            font-weight: 400;
+        }
+
+        /* Botón de búsqueda para móviles */
+        .search-btn {
+            display: none;
+            width: 50px;
+            height: 50px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .search-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+        }
+
+        .search-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Estilos para el contenedor de búsqueda con icono */
+        .search-input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+
+        /* Estilos modernos para el contenedor de filtros */
+        .filter-container {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .filter-wrapper {
+            position: relative;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .filter-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        /* Estilos para el select moderno */
+        .modern-select {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 20px;
+            padding-right: 50px;
+        }
+
+        .modern-select:hover {
+            border-color: #3498db;
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .modern-select:focus {
+            outline: none;
+            border-color: #2980b9;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .modern-select option {
+            padding: 12px 15px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #2c3e50;
+            background-color: #ffffff;
+            border: none;
+        }
+
+        .modern-select option:hover {
+            background-color: #f8f9fa;
+        }
+
+        .modern-select option:checked {
+            background-color: #3498db;
+            color: white;
+        }
+
+        /* Efecto de animación al cargar */
+        .filter-wrapper {
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animación de carga */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .search-wrapper {
+                margin: 15px 0;
+                padding: 0 15px;
+            }
+
+            .modern-search {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+
+            .search-btn {
+                display: flex;
+            }
+
+            .filter-container {
+                margin: 20px 0;
+                padding: 0 15px;
+            }
+
+            .filter-wrapper {
+                max-width: 100%;
+            }
+
+            .modern-select {
+                padding: 12px 15px;
+                font-size: 14px;
+                background-position: right 12px center;
+                background-size: 18px;
+                padding-right: 40px;
+            }
+
+            .filter-label {
+                font-size: 14px;
+            }
+        }
+
+        /* Efecto de pulso para indicar interactividad */
+        .modern-select:not(:focus):hover {
+            animation: gentlePulse 2s infinite;
+        }
+
+        @keyframes gentlePulse {
+
+            0%,
+            100% {
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            }
+
+            50% {
+                box-shadow: 0 6px 20px rgba(52, 152, 219, 0.2);
+            }
+        }
+
+        /* Estilos para iconos de la leyenda */
+        .leyenda-color {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 12px;
+            border: 2px solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .leyenda-icon {
+            width: 16px;
+            height: 16px;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Estilos base para la leyenda de marcadores - COMPLETAMENTE OCULTA */
+        .leyenda-marcadores {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            position: absolute !important;
+            left: -9999px !important;
+            top: -9999px !important;
+            width: 0 !important;
+            height: 0 !important;
+            overflow: hidden !important;
+            z-index: -1 !important;
+        }
+
+        /* Forzar ocultación en todos los contextos */
+        #leyendaMarcadores {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            position: absolute !important;
+            left: -9999px !important;
+            top: -9999px !important;
+            width: 0 !important;
+            height: 0 !important;
+            overflow: hidden !important;
+            z-index: -1 !important;
+        }
+
+
+        .leyenda-marcadores h4 {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .leyenda-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .leyenda-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 8px;
+            border: 2px solid;
+        }
+
+        .leyenda-texto {
+            color: #666;
+            font-size: 11px;
+        }
+
+        /* Eliminar margen inferior de la sección del mapa */
+        #mapa {
+            padding-bottom: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+        /* Hacer que el mapa ocupe toda la altura disponible */
+        #map {
+            height: calc(100vh - 200px) !important;
+            margin: 0 0 20px 0 !important;
+            /* Margen inferior pequeño */
+            padding: 0 !important;
+            width: 100% !important;
+        }
+
+        /* El mapa ya no necesita margen derecho */
+        @media (min-width: 769px) {
+            #map {
+                margin-right: 0 !important;
+            }
+        }
+
+        /* Ocultar footer para eliminar espacio */
+        footer {
+            display: none !important;
+        }
+
+        /* Eliminar márgenes de contenedores */
+        #mapa .container,
+        #mapa .row,
+        #mapa .col-lg-12 {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        /* Eliminar márgenes del body y html */
+        body,
+        html {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        /* Asegurar que no hay espacio después del mapa */
+        #mapa+* {
+            margin-top: 0 !important;
+        }
+
+        /* Eliminar solo espacios inferiores del body y html */
+        body {
+            margin: 0 !important;
+            padding-bottom: 0 !important;
+            /* Solo eliminar padding inferior */
+            overflow-x: hidden !important;
+        }
+
+        html {
+            margin: 0 !important;
+            padding-bottom: 0 !important;
+            /* Solo eliminar padding inferior */
+        }
+
+        /* Asegurar que la sección del mapa solo elimine espacio inferior */
+        #mapa {
+            margin: 0 !important;
+            padding-top: 3rem !important;
+            /* Mantener padding superior */
+            padding-bottom: 0 !important;
+            /* Solo eliminar padding inferior */
+        }
+
+        /* En desktop, el mapa tiene posición relativa */
+        @media (min-width: 769px) {
+            #map {
+                position: relative;
+            }
+        }
+
+        /* Media query para ocultar en móviles */
+        @media (min-width: 769px) {
+            .leyenda-tab {
+                display: none !important;
+            }
+        }
+
+        /* Responsive design para móviles */
+        @media (max-width: 768px) {
+            .leyenda-marcadores {
+                display: none !important;
+            }
+
+            .leyenda-tab {
+                display: none !important;
+                /* Ahora usamos el botón en todas las pantallas */
+            }
+        }
+
+        /* Botón de scroll hacia arriba */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 120px;
+            /* Subido más arriba para mejor accesibilidad */
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .scroll-to-top.show {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5);
+        }
+
+        /* Botón de leyenda de marcadores */
+        .leyenda-button {
+            position: fixed;
+            bottom: 120px;
+            /* Misma altura que el botón de scroll */
+            left: 20px;
+            /* Movido al lado izquierdo */
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Ajustes para móvil */
+        @media (max-width: 768px) {
+            .leyenda-button {
+                bottom: 130px;
+                /* Más espacio para evitar superposición con barra de navegación */
+                left: 15px;
+                /* Mantiene posición izquierda */
+                width: 45px;
+                height: 45px;
+                font-size: 16px;
+            }
+
+            .scroll-to-top {
+                bottom: 130px;
+                /* Más espacio para evitar superposición con barra de navegación */
+                right: 15px;
+                /* Mantiene posición derecha */
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+
+        .leyenda-button.show {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .leyenda-button:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5);
+        }
+
+        /* Media queries adicionales para mejor alineación y espaciado */
+        @media (max-width: 480px) {
+            .leyenda-button {
+                bottom: 125px;
+                /* Espacio adicional para evitar superposición con barra de navegación */
+                left: 15px;
+                /* Mantiene posición izquierda */
+                width: 42px;
+                height: 42px;
+                font-size: 15px;
+            }
+
+            .scroll-to-top {
+                bottom: 125px;
+                /* Espacio adicional para evitar superposición con barra de navegación */
+                right: 15px;
+                /* Mantiene posición derecha */
+                width: 42px;
+                height: 42px;
+                font-size: 17px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .leyenda-button {
+                bottom: 120px;
+                /* Espacio adicional para evitar superposición con barra de navegación */
+                left: 12px;
+                /* Mantiene posición izquierda */
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
+            }
+
+            .scroll-to-top {
+                bottom: 120px;
+                /* Espacio adicional para evitar superposición con barra de navegación */
+                right: 12px;
+                /* Mantiene posición derecha */
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
+
+        /* Modal de leyenda */
+        .leyenda-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .leyenda-modal.show {
+            display: flex;
+        }
+
+        .leyenda-content {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            max-width: 400px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .leyenda-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .leyenda-close:hover {
+            background: #c0392b;
+            transform: scale(1.1);
+        }
+
+
+        /* Ajustar el mapa para móviles */
+        #map {
+            height: calc(100vh - 120px);
+            position: relative;
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbar" class="static-layout">
+
+    <nav id="header-navbar" class="navbar navbar-expand-lg py-4">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center text-white" href="index.html">
+                <img src="img/navbar.svg" alt="UBICATEC logo" style="height: 35px;" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-nav-header"
+                aria-controls="navbar-nav-header" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="lnr lnr-menu"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-nav-header">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="aula.html">Ubica tu Edificio</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="sitiosDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Accesos Estudiantes
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="sitiosDropdown">
+                            <a class="dropdown-item" href="eventos.html">Eventos</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="https://puebla.ambar.tecnm.mx/" rel="noopener noreferrer"
+                                target="_blank">Ambar</a>
+                            <a class="dropdown-item" href="https://idiomastecpueblacle.blogspot.com/"
+                                rel="noopener noreferrer" target="_blank">Coordinacion de lenguas Extranjeras</a>
+                            <a class="dropdown-item" href="https://evadoc.puebla.tecnm.mx/" rel="noopener noreferrer"
+                                target="_blank">Sitio Evaluacion Docente</a>
+                            <a class="dropdown-item" href="https://www.facebook.com/DesarrolloAcademicoItPuebla"
+                                rel="noopener noreferrer" target="_blank">Desarrollo Academico (Facebook) </a>
+                            <a class="dropdown-item" href="https://www.facebook.com/profile.php?id=100063864618184"
+                                rel="noopener noreferrer" target="_blank">Actividades Extraescolares (Facebook) </a>
+                            <a class="dropdown-item" href="https://www.facebook.com/TECNMcampusPuebla"
+                                rel="noopener noreferrer" target="_blank">TecNM Puebla (Facebook) </a>
+                            <a class="dropdown-item" href="https://www.facebook.com/cesacampuspuebla"
+                                rel="noopener noreferrer" target="_blank">CESA Puebla (Facebook) </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="equipo.html">Equipo de desarrollo</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Floating Mobile Navigation Bar (de index.html) -->
+    <div class="floating-mobile-nav" id="floatingMobileNav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-item" id="navHome">
+                <div class="nav-icon">
+                    <i class="lnr lnr-home"></i>
+                </div>
+                <span class="nav-label">Inicio</span>
+            </a>
+            <a href="aula.html" class="nav-item active" id="navAula">
+                <div class="nav-icon">
+                    <i class="lnr lnr-map-marker"></i>
+                </div>
+                <span class="nav-label">Ubica</span>
+            </a>
+            <a href="eventos.html" class="nav-item" id="navEventos">
+                <div class="nav-icon">
+                    <i class="lnr lnr-calendar-full"></i>
+                </div>
+                <span class="nav-label">Eventos</span>
+            </a>
+            <a href="equipo.html" class="nav-item" id="navEquipo">
+                <div class="nav-icon">
+                    <i class="lnr lnr-users"></i>
+                </div>
+                <span class="nav-label">Equipo</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Mapa del Campus</h1>
+                <p class="hero-subtitle">Encuentra tu edificio en el campus del TecNM Puebla</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="mapa" class="pt-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12 text-center">
+                    <h2 class="mb-4">Ubica tu Edificio</h2>
+                    <p class="text-muted">Instrucciones: usa el buscador o los filtros para localizar el edificio que
+                        deseas consultar</p>
+
+                    <!-- Indicador de carga optimizado -->
+                    <div id="mapLoadingIndicator" style="display: none; text-align: center; padding: 20px;">
+                        <div
+                            style="display: inline-block; width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #007bff; border-radius: 50%; animation: spin 1s linear infinite;">
+                        </div>
+                        <p style="margin-top: 10px; color: #666;">Cargando mapa...</p>
+                    </div>
+                    <div class="search-wrapper">
+                        <form id="searchForm" onsubmit="event.preventDefault(); return false;" style="width: 100%;">
+                            <div class="search-input-container">
+                                <input type="search" id="searchInput" class="modern-search"
+                                    placeholder="Ingresa el número de edificio" autocomplete="off" />
+                                <button type="submit" id="searchBtn" class="search-btn">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="filter-container">
+                        <div class="filter-wrapper">
+                            <label for="filterSelect" class="filter-label">Filtrar por tipo:</label>
+                            <select id="filterSelect" class="modern-select">
+                                <option value="todos">Todos los edificios</option>
+                                <option value="aula">Aulas</option>
+                                <option value="laboratorio">Laboratorios</option>
+                                <option value="administrativo">Administrativo</option>
+                                <option value="deportivo">Deportivo y Recreativo</option>
+                                <option value="baño">Baños</option>
+                                <option value="acceso">Accesos</option>
+                                <option value="punto_reunion">Puntos de reunión</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="map"></div>
+
+                    <!-- Pestaña de leyenda para móviles -->
+                    <div class="leyenda-tab" id="leyendaTab" style="display: none;">
+                        <i class="fas fa-chevron-up"></i>
+                        <span>Leyenda de Marcadores</span>
+                    </div>
+
+                    <!-- Botón de scroll hacia arriba -->
+                    <button class="scroll-to-top" id="scrollToTop"
+                        style="display: flex; background: #007bff; color: white; border: none; border-radius: 50%; width: 50px; height: 50px; position: fixed; bottom: 120px; right: 20px; z-index: 1000; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);">
+                        <i class="fas fa-arrow-up"></i>
+                    </button>
+
+                    <!-- Botón de leyenda de marcadores -->
+                    <button class="leyenda-button" id="leyendaButton" title="Mostrar leyenda de marcadores">
+                        <i class="fas fa-list"></i>
+                    </button>
+
+                    <!-- Botón de información de accesibilidad (inyectado por JS externo) -->
+                    <script src="js/boton-accesibilidad.js"></script>
+
+                    <!-- Modal de leyenda -->
+                    <div class="leyenda-modal" id="leyendaModal">
+                        <div class="leyenda-content">
+                            <button class="leyenda-close" id="leyendaClose">×</button>
+                            <h4>Leyenda de Marcadores</h4>
+                            <div class="leyenda-item">
+                                <div class="leyenda-color" style="background-color: #3498db; border-color: #2980b9;">
+                                    <img src="Icon/tabler/school.svg" alt="Aulas" class="leyenda-icon" />
+                                </div>
+                                <span class="leyenda-texto">Aulas</span>
+                            </div>
+                            <div class="leyenda-item">
+                                <div class="leyenda-color" style="background-color: #27ae60; border-color: #229954;">
+                                    <img src="Icon/tabler/microscope.svg" alt="Laboratorios" class="leyenda-icon" />
+                                </div>
+                                <span class="leyenda-texto">Laboratorios</span>
+                            </div>
+                            <div class="leyenda-item">
+                                <div class="leyenda-color" style="background-color: #e67e22; border-color: #d35400;">
+                                    <img src="Icon/tabler/building.svg" alt="Administrativo" class="leyenda-icon" />
+                                </div>
+                                <span class="leyenda-texto">Administrativo</span>
+                            </div>
+                            <div class="leyenda-item">
+                                <div class="leyenda-color" style="background-color: #9b59b6; border-color: #8e44ad;">
+                                    <img src="Icon/tabler/toilet-paper.svg" alt="Baños" class="leyenda-icon" />
+                                </div>
+                                <span class="leyenda-texto">Baños</span>
+                            </div>
+                            <div class="leyenda-item">
+                                <div class="leyenda-color" style="background-color: #e74c3c; border-color: #c0392b;">
+                                    <img src="Icon/tabler/door.svg" alt="Accesos" class="leyenda-icon" />
+                                </div>
+                                <span class="leyenda-texto">Accesos</span>
+                            </div>
+                            <div class="leyenda-item">
+                                <div class="leyenda-color" style="background-color: #2ecc71; border-color: #27ae60;">
+                                    <img src="Icon/tabler/sport.svg" alt="Deportivo" class="leyenda-icon" />
+                                </div>
+                                <span class="leyenda-texto">Deportivo</span>
+                            </div>
+                            <div class="leyenda-item">
+                                <div class="leyenda-color" style="background-color: #95a5a6; border-color: #7f8c8d;">
+                                    <img src="Icon/tabler/tools.svg" alt="Otros" class="leyenda-icon" />
+                                </div>
+                                <span class="leyenda-texto">Otros</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal de Resultados Múltiples -->
+                    <div class="leyenda-modal" id="resultadosModal" style="display: none; z-index: 10001;">
+                        <div class="leyenda-content" style="max-height: 80vh; overflow-y: auto;">
+                            <button class="leyenda-close" id="resultadosClose">×</button>
+                            <h4 style="margin-bottom: 15px; color: #333; text-align: center;">Resultados encontrados
+                            </h4>
+                            <p style="text-align: center; margin-bottom: 15px; font-size: 0.9rem; color: #666;">
+                                Selecciona una opción para ver en el mapa:</p>
+                            <div id="listaResultados" style="display: flex; flex-direction: column; gap: 10px;">
+                                <!-- Los resultados se insertarán aquí dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Leyenda de colores (solo para desktop) -->
+                    <div class="leyenda-marcadores" id="leyendaMarcadores">
+                        <h4>Leyenda de Marcadores</h4>
+                        <div class="leyenda-item">
+                            <div class="leyenda-color" style="background-color: #3498db; border-color: #2980b9;">
+                                <img src="Icon/tabler/school.svg" alt="Aulas" class="leyenda-icon" />
+                            </div>
+                            <span class="leyenda-texto">Aulas</span>
+                        </div>
+                        <div class="leyenda-item">
+                            <div class="leyenda-color" style="background-color: #27ae60; border-color: #229954;">
+                                <img src="Icon/tabler/microscope.svg" alt="Laboratorios" class="leyenda-icon" />
+                            </div>
+                            <span class="leyenda-texto">Laboratorios</span>
+                        </div>
+                        <div class="leyenda-item">
+                            <div class="leyenda-color" style="background-color: #e67e22; border-color: #d35400;">
+                                <img src="Icon/tabler/building.svg" alt="Administrativo" class="leyenda-icon" />
+                            </div>
+                            <span class="leyenda-texto">Administrativo</span>
+                        </div>
+                        <div class="leyenda-item">
+                            <div class="leyenda-color" style="background-color: #9b59b6; border-color: #8e44ad;">
+                                <img src="Icon/tabler/toilet-paper.svg" alt="Baños" class="leyenda-icon" />
+                            </div>
+                            <span class="leyenda-texto">Baños</span>
+                        </div>
+                        <div class="leyenda-item">
+                            <div class="leyenda-color" style="background-color: #e74c3c; border-color: #c0392b;">
+                                <img src="Icon/tabler/door.svg" alt="Accesos" class="leyenda-icon" />
+                            </div>
+                            <span class="leyenda-texto">Accesos</span>
+                        </div>
+                        <div class="leyenda-item">
+                            <div class="leyenda-color" style="background-color: #2ecc71; border-color: #27ae60;">
+                                <img src="Icon/tabler/sport.svg" alt="Deportivo" class="leyenda-icon" />
+                            </div>
+                            <span class="leyenda-texto">Deportivo</span>
+                        </div>
+                        <div class="leyenda-item">
+                            <div class="leyenda-color" style="background-color: #95a5a6; border-color: #7f8c8d;">
+                                <img src="Icon/tabler/tools.svg" alt="Otros" class="leyenda-icon" />
+                            </div>
+                            <span class="leyenda-texto">Otros</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="vendor/bootstrap/popper.min.js"></script>
+    <script src="vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="vendor/owlcarousel/owl.carousel.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js/app.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="js/mapa-accesible.js"></script>
+    <script src="js/mapa.js"></script>
+
+    <script>
+        // Funcionalidad para la leyenda en móviles
+        document.addEventListener('DOMContentLoaded', function () {
+            const leyendaTab = document.getElementById('leyendaTab');
+            const leyendaModal = document.getElementById('leyendaModal');
+            const leyendaClose = document.getElementById('leyendaClose');
+            const leyendaMarcadores = document.getElementById('leyendaMarcadores');
+            const leyendaButton = document.getElementById('leyendaButton');
+            const scrollToTop = document.getElementById('scrollToTop');
+            const mapSection = document.getElementById('mapa');
+
+            // Mostrar/ocultar elementos según el tamaño de pantalla
+            function checkScreenSize() {
+                if (window.innerWidth <= 768) {
+                    // Móvil: ocultar pestaña, mostrar botón, ocultar leyenda flotante
+                    leyendaTab.style.display = 'none';
+                    leyendaButton.style.display = 'flex';
+                    leyendaMarcadores.style.display = 'none';
+                } else {
+                    // Desktop: ocultar pestaña, mostrar botón, ocultar leyenda flotante
+                    leyendaTab.style.display = 'none';
+                    leyendaButton.style.display = 'flex';
+                    leyendaMarcadores.style.display = 'none';
+                }
+            }
+
+            // Verificar tamaño de pantalla al cargar y al redimensionar
+            checkScreenSize();
+            window.addEventListener('resize', checkScreenSize);
+
+            // Mostrar botón inmediatamente
+            handleScroll();
+
+            // Mostrar botones en todas las pantallas
+            function handleScroll() {
+                // Mostrar botón de scroll siempre (móvil y desktop)
+                scrollToTop.classList.add('show');
+
+                // Mostrar botón de leyenda en todas las pantallas
+                leyendaButton.classList.add('show');
+            }
+
+            // Escuchar eventos de scroll
+            window.addEventListener('scroll', handleScroll);
+
+            // Scroll hacia arriba al hacer click en el botón
+            scrollToTop.addEventListener('click', function () {
+                // Ir al principio de la página
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Funciones para abrir y cerrar modal
+            function openLegendModal() {
+                leyendaModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLegendModal() {
+                leyendaModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+
+            // Mostrar modal de leyenda al hacer click en el botón
+            leyendaButton.addEventListener('click', openLegendModal);
+
+            // Forzar ocultación de la leyenda original
+            function hideOriginalLegend() {
+                const originalLegend = document.getElementById('leyendaMarcadores');
+                if (originalLegend) {
+                    originalLegend.style.display = 'none';
+                    originalLegend.style.visibility = 'hidden';
+                    originalLegend.style.opacity = '0';
+                    originalLegend.style.position = 'absolute';
+                    originalLegend.style.left = '-9999px';
+                    originalLegend.style.top = '-9999px';
+                    originalLegend.style.width = '0';
+                    originalLegend.style.height = '0';
+                    originalLegend.style.overflow = 'hidden';
+                    originalLegend.style.zIndex = '-1';
+                }
+            }
+
+            // Ejecutar inmediatamente y en intervalos
+            hideOriginalLegend();
+            setInterval(hideOriginalLegend, 100);
+
+            // Agregar estilo CSS dinámico para forzar ocultación
+            const style = document.createElement('style');
+            style.textContent = `
+                #leyendaMarcadores {
+                    display: none !important;
+                    visibility: hidden !important;
+                    opacity: 0 !important;
+                    position: absolute !important;
+                    left: -9999px !important;
+                    top: -9999px !important;
+                    width: 0 !important;
+                    height: 0 !important;
+                    overflow: hidden !important;
+                    z-index: -1 !important;
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Abrir modal al hacer click en la pestaña
+            leyendaTab.addEventListener('click', function () {
+                if (window.innerWidth <= 768) {
+                    openLegendModal();
+                }
+            });
+
+            // Cerrar modal con botón X
+            leyendaClose.addEventListener('click', closeLegendModal);
+
+            // Cerrar modal al hacer click en el fondo
+            leyendaModal.addEventListener('click', function (e) {
+                if (e.target === leyendaModal) {
+                    closeLegendModal();
+                }
+            });
+
+            // Cerrar modal con tecla Escape
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && leyendaModal.style.display === 'flex') {
+                    closeLegendModal();
+                }
+            });
+        });
+    </script>
+
+    <!-- JavaScript para Floating Mobile Navigation (de index.html) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Solo ejecutar en dispositivos móviles
+            if (window.innerWidth <= 768) {
+                const navItems = document.querySelectorAll('.floating-mobile-nav .nav-item');
+                let activeItem = null;
+
+                // Función para establecer item activo (solo para funcionalidad, sin estilos visuales)
+                function setActiveNavItem(item) {
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    if (item) {
+                        item.classList.add('active');
+                    }
+                }
+
+                // Detectar página actual
+                function setCurrentPageActive() {
+                    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                    let activeElement = null;
+
+                    switch (currentPage) {
+                        case 'index.html':
+                        case '':
+                            activeElement = document.getElementById('navHome');
+                            break;
+                        case 'aula.html':
+                            activeElement = document.getElementById('navAula');
+                            break;
+                        case 'eventos.html':
+                            activeElement = document.getElementById('navEventos');
+                            break;
+                        case 'equipo.html':
+                            activeElement = document.getElementById('navEquipo');
+                            break;
+                        default:
+                            activeElement = document.getElementById('navHome');
+                    }
+
+                    if (activeElement) {
+                        setActiveNavItem(activeElement);
+                    }
+                }
+
+                // Sistema DIRECTO de detección de color basado en scroll
+                const DirectColorDetector = {
+                    currentState: null,
+                    lastUpdate: 0,
+
+                    // Detectar si estamos sobre fondo claro u oscuro basado en posición de scroll
+                    detectBackgroundType() {
+                        const navbar = document.getElementById('floatingMobileNav');
+                        if (!navbar) return 'dark'; // Default a oscuro
+
+                        const rect = navbar.getBoundingClientRect();
+                        const centerY = rect.top + rect.height / 2;
+
+                        // Si el navbar está en la parte superior de la pantalla (sobre el header azul)
+                        if (centerY < window.innerHeight * 0.6) {
+                            return 'dark'; // Header azul oscuro
+                        } else {
+                            return 'light'; // Contenido blanco
+                        }
+                    },
+
+                    // Actualizar colores basado en posición
+                    update() {
+                        const now = Date.now();
+                        if (now - this.lastUpdate < 100) return; // Throttle
+
+                        const backgroundType = this.detectBackgroundType();
+
+                        // Solo actualizar si el estado cambió
+                        if (this.currentState !== backgroundType) {
+                            this.currentState = backgroundType;
+
+                            navItems.forEach(item => {
+                                item.style.transition = 'color 0.4s ease';
+
+                                if (backgroundType === 'dark') {
+                                    // Fondo oscuro - texto blanco
+                                    item.style.color = 'rgba(255, 255, 255, 0.95)';
+                                    item.style.textShadow = '0 1px 2px rgba(0, 0, 0, 0.3)';
+                                    item.style.fontWeight = '600';
+                                } else {
+                                    // Fondo claro - texto negro
+                                    item.style.color = 'rgba(0, 0, 0, 0.85)';
+                                    item.style.textShadow = '0 1px 2px rgba(255, 255, 255, 0.5)';
+                                    item.style.fontWeight = '500';
+                                }
+                            });
+
+                            this.lastUpdate = now;
+                        }
+                    }
+                };
+
+                // Inicializar sistema directo basado en posición
+                const initDirectColorDetection = () => {
+                    // Actualización inicial
+                    DirectColorDetector.update();
+
+                    // Eventos optimizados
+                    let scrollTimer;
+                    let resizeTimer;
+
+                    // Scroll con throttling - esto es clave para la detección
+                    window.addEventListener('scroll', () => {
+                        if (scrollTimer) return;
+                        scrollTimer = setTimeout(() => {
+                            DirectColorDetector.update();
+                            scrollTimer = null;
+                        }, 50); // Más rápido para mejor respuesta
+                    }, { passive: true });
+
+                    // Resize con debounce
+                    window.addEventListener('resize', () => {
+                        if (resizeTimer) clearTimeout(resizeTimer);
+                        resizeTimer = setTimeout(() => DirectColorDetector.update(), 200);
+                    });
+
+                    // Actualización después de cargar
+                    window.addEventListener('load', () => {
+                        setTimeout(() => DirectColorDetector.update(), 300);
+                    });
+                };
+
+                // Inicialización directa
+                setTimeout(initDirectColorDetection, 100);
+                setTimeout(() => DirectColorDetector.update(), 300);
+
+                // Efectos táctiles avanzados para móviles
+                navItems.forEach(item => {
+                    let isPressed = false;
+                    let pressTimer = null;
+
+                    // Simular hover al tocar y mantener presionado
+                    item.addEventListener('touchstart', function (e) {
+                        isPressed = true;
+
+                        // Efecto inmediato
+                        this.style.transform = 'translateY(-1px) scale(0.95)';
+                        this.style.transition = 'all 0.1s ease';
+
+                        // Efecto hover después de 100ms
+                        pressTimer = setTimeout(() => {
+                            if (isPressed) {
+                                this.style.transform = 'translateY(-2px)';
+                                this.style.transition = 'all 0.3s ease';
+                            }
+                        }, 100);
+                    }, { passive: true });
+
+                    // Restaurar estado al soltar
+                    item.addEventListener('touchend', function (e) {
+                        isPressed = false;
+                        clearTimeout(pressTimer);
+
+                        setTimeout(() => {
+                            this.style.transform = '';
+                            this.style.transition = 'all 0.3s ease';
+                        }, 50);
+                    }, { passive: true });
+
+                    // Cancelar efecto si el usuario arrastra fuera del elemento
+                    item.addEventListener('touchcancel', function (e) {
+                        isPressed = false;
+                        clearTimeout(pressTimer);
+
+                        this.style.transform = '';
+                        this.style.transition = 'all 0.3s ease';
+                    }, { passive: true });
+
+                    // Manejar clics
+                    item.addEventListener('click', function (e) {
+                        if (!this.classList.contains('active')) {
+                            setActiveNavItem(this);
+                        }
+
+                        setTimeout(() => {
+                            // El navegador manejará la navegación automáticamente
+                        }, 100);
+                    });
+                });
+
+                // Establecer item activo al cargar
+                setCurrentPageActive();
+
+                // Manejar cambios de orientación
+                window.addEventListener('orientationchange', function () {
+                    setTimeout(setCurrentPageActive, 100);
+                });
+            }
+
+            // Manejar cambios de tamaño de ventana
+            window.addEventListener('resize', function () {
+                const floatingNav = document.getElementById('floatingMobileNav');
+                const desktopNav = document.getElementById('header-navbar');
+
+                if (window.innerWidth <= 768) {
+                    if (floatingNav) floatingNav.style.display = 'block';
+                    if (desktopNav) desktopNav.style.display = 'none';
+                } else {
+                    if (floatingNav) floatingNav.style.display = 'none';
+                    if (desktopNav) desktopNav.style.display = 'block';
+                }
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

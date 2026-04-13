@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner Simple - Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        .eventos-banner {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 12px 0;
+            position: relative;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(40, 167, 69, 0.3);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+        
+        .col-md-8 {
+            flex: 0 0 66.666667%;
+            max-width: 66.666667%;
+            padding: 0 15px;
+        }
+        
+        .col-md-4 {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+            padding: 0 15px;
+        }
+        
+        .d-flex {
+            display: flex !important;
+        }
+        
+        .align-items-center {
+            align-items: center !important;
+        }
+        
+        .text-right {
+            text-align: right !important;
+        }
+        
+        .mb-0 {
+            margin-bottom: 0 !important;
+        }
+        
+        .evento-indicator {
+            margin-right: 12px;
+            position: relative;
+        }
+        
+        .pulse-dot {
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .evento-info h6 {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        
+        .evento-info small {
+            opacity: 0.9;
+            font-size: 0.85rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            border: 1px solid transparent;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            border-radius: 0.25rem;
+            text-decoration: none;
+        }
+        
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            border-radius: 0.2rem;
+        }
+        
+        .btn-outline-light {
+            color: #f8f9fa;
+            border-color: #f8f9fa;
+            background-color: transparent;
+        }
+        
+        .btn-outline-light:hover {
+            color: #212529;
+            background-color: #f8f9fa;
+            border-color: #f8f9fa;
+        }
+        
+        .content {
+            padding: 40px 20px;
+            text-align: center;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+        
+        .test-controls {
+            margin: 20px 0;
+        }
+        
+        .test-controls button {
+            margin: 5px;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .test-controls button:hover {
+            background: #0056b3;
+        }
+        
+        .status {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            border-left: 4px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner de eventos en curso -->
+    <div id="eventos-banner" class="eventos-banner">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="d-flex align-items-center">
+                        <div class="evento-indicator">
+                            <div class="pulse-dot"></div>
+                        </div>
+                        <div class="evento-info">
+                            <h6 class="mb-0">🎯 Evento en curso</h6>
+                            <small id="evento-actual-texto">Ponencia: Análisis de señales fetales con IA - Comenzó hace 1 min</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-right">
+                    <button class="btn btn-sm btn-outline-light" onclick="window.location.href='jornadas.html'">
+                        Ver detalles
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>✅ Banner Funcionando</h1>
+        <p>Si puedes ver el banner verde arriba, ¡está funcionando correctamente!</p>
+        
+        <div class="status">
+            <strong>Estado del Banner:</strong><br>
+            <span id="estado-banner">Verificando...</span>
+        </div>
+        
+        <div class="test-controls">
+            <button onclick="cambiarTexto()">Cambiar Texto</button>
+            <button onclick="ocultarBanner()">Ocultar Banner</button>
+            <button onclick="mostrarBanner()">Mostrar Banner</button>
+            <button onclick="verificarEstado()">Verificar Estado</button>
+        </div>
+        
+        <h2>¿Qué deberías ver?</h2>
+        <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
+            <li>✅ <strong>Banner verde</strong> con gradiente en la parte superior</li>
+            <li>⚡ <strong>Punto blanco pulsante</strong> a la izquierda</li>
+            <li>📝 <strong>Texto del evento</strong> con información</li>
+            <li>🔗 <strong>Botón "Ver detalles"</strong> a la derecha</li>
+        </ul>
+        
+        <h2>Próximos pasos:</h2>
+        <ol style="text-align: left; max-width: 600px; margin: 0 auto;">
+            <li>Si ves el banner aquí, el problema está en el index.html</li>
+            <li>Si no ves el banner aquí, hay un problema con los estilos CSS</li>
+            <li>Usa los botones de arriba para probar la funcionalidad</li>
+        </ol>
+    </div>
+
+    <script>
+        function cambiarTexto() {
+            const texto = document.getElementById('evento-actual-texto');
+            const textos = [
+                'Ponencia: Análisis de señales fetales con IA - Comenzó hace 1 min',
+                'Taller: AWS Lambda - Comenzó hace 5 min',
+                'Ponencia: Seguridad y ética en IA - Comenzó hace 10 min',
+                'Taller: Python para IA - Comenzó hace 15 min'
+            ];
+            
+            const indice = Math.floor(Math.random() * textos.length);
+            texto.textContent = textos[indice];
+            
+            document.getElementById('estado-banner').innerHTML = 'Texto cambiado: ' + textos[indice];
+        }
+        
+        function ocultarBanner() {
+            const banner = document.getElementById('eventos-banner');
+            banner.style.display = 'none';
+            document.getElementById('estado-banner').innerHTML = 'Banner ocultado';
+        }
+        
+        function mostrarBanner() {
+            const banner = document.getElementById('eventos-banner');
+            banner.style.display = 'block';
+            document.getElementById('estado-banner').innerHTML = 'Banner mostrado';
+        }
+        
+        function verificarEstado() {
+            const banner = document.getElementById('eventos-banner');
+            const texto = document.getElementById('evento-actual-texto');
+            
+            const info = `
+Banner encontrado: ${banner ? 'SÍ' : 'NO'}
+Texto encontrado: ${texto ? 'SÍ' : 'NO'}
+Display: ${banner ? banner.style.display : 'N/A'}
+Computed display: ${banner ? getComputedStyle(banner).display : 'N/A'}
+Texto actual: ${texto ? texto.textContent : 'N/A'}
+            `.trim();
+            
+            document.getElementById('estado-banner').innerHTML = info.replace(/\n/g, '<br>');
+        }
+        
+        // Verificación automática al cargar
+        window.onload = function() {
+            setTimeout(() => {
+                verificarEstado();
+            }, 500);
+        };
+    </script>
+</body>
+</html>

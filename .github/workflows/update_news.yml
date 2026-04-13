@@ -1,0 +1,35 @@
+name: Actualizar Noticias Diariamente
+
+on:
+  schedule:
+    # Se ejecuta a las 14:00 UTC (8:00 AM hora CDMX aprox) todos los días
+    - cron: '0 14 * * *'
+  workflow_dispatch: # Permite ejecutarlo manualmente desde GitHub
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout del código
+      uses: actions/checkout@v3
+
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Instalar dependencias
+      run: |
+        pip install -r requirements.txt
+
+    - name: Ejecutar script de noticias
+      run: python update_noticias.py
+
+    - name: Verificar cambios y hacer commit
+      run: |
+        git config --global user.name 'GitHub Action Bot'
+        git config --global user.email 'action@github.com'
+        git add data/noticias.json
+        # Solo hace commit si hay cambios
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Actualización automática de noticias" && git push)

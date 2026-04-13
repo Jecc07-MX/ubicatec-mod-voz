@@ -1,0 +1,23 @@
+* [33m1ffb7f5[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fix: Centrar modal del visor 360 correctamente
+* [33m96c2bff[m Eliminar animaciones de marcadores del mapa - Quitar transition CSS de los marcadores personalizados - Marcadores ahora se quedan fijos sin animaciones - Mejorar experiencia de usuario al hacer click - Mantener funcionalidad de click intacta - Eliminar distracciones visuales innecesarias
+* [33m3cf099f[m Implementar botón de búsqueda para móviles - Agregar botón circular con icono de lupa al lado de la barra de búsqueda - Mostrar solo en pantallas móviles (768px) - Funcionalidad idéntica a presionar Enter - Diseño azul circular con hover effect - Mejorar experiencia de usuario en dispositivos móviles - Mantener funcionalidad de Enter en desktop
+* [33mfe5021e[m Implementar búsqueda con Enter para centrar mapa en edificios - Agregar event listener para tecla Enter en campo de búsqueda - Crear función centrarEnEdificio para búsqueda inteligente - Priorizar coincidencias exactas de número de edificio - Centrar mapa automáticamente con animación suave - Mostrar solo el edificio encontrado y abrir su popup - Zoom nivel 19 para visualización clara - Funciona en móvil y desktop
+* [33m0d04782[m Corregir funcionalidad del botón de scroll hacia arriba - Cambiar de scrollIntoView a window.scrollTo para mayor confiabilidad - Usar top: 0 para ir al principio de la página - Agregar behavior: smooth para animación fluida - Disponible en todas las pantallas (móvil y desktop) - Eliminar dependencia de elementos específicos del DOM
+* [33me765257[m Corregir botón de scroll hacia arriba en móviles - Simplificar lógica de activación del botón - Mostrar botón después de 200px de scroll hacia abajo - Eliminar dependencia de posición exacta del mapa - Mejorar experiencia de usuario en navegación móvil - Mantener restricción solo para pantallas  768px
+* [33m20d2453[m Corregir visibilidad de leyendas responsive - Agregar CSS !important para control estricto de visibilidad - Separar completamente leyenda móvil y desktop - Móvil: solo pestaña azul, sin leyenda flotante - Desktop: solo leyenda flotante blanca, sin pestaña - Mejorar JavaScript con comentarios claros - Eliminar duplicaciones y superposiciones
+* [33m1c4dc43[m Compactar pestaña de leyenda en móviles - Reducir padding de 15px 30px a 10px 20px - Reducir ancho mínimo de 200px a 160px - Reducir font-size de 16px a 14px - Reducir font-weight de 600 a 500 - Reducir border-radius de 25px a 20px - Reducir icono de 18px a 16px - Hacer transiciones más rápidas (0.2s) - Mejorar experiencia visual en móviles
+* [33m9d87871[m Implementar modal de leyenda con blur de fondo para móviles - Reemplazar pestaña deslizante por modal elegante - Agregar botón de cerrar (X) en modal - Implementar blur de fondo con backdrop-filter - Mantener leyenda flotante original en desktop - Mejorar experiencia de usuario en móviles
+* [33mee751e8[m Eliminar animación y simplificar posicionamiento de leyenda en móviles
+* [33m33e6b62[m Corregir posicionamiento final para eliminar completamente la separación entre pestaña y contenido
+* [33m94a78ed[m Eliminar separación entre pestaña y contenido de leyenda en móviles
+* [33m9a533d2[m Ajustar posicionamiento para conectar mejor el contenido con la pestaña en móviles
+* [33m9768b82[m Compactar contenido de la pestaña de leyenda en móviles para mejor aprovechamiento del espacio
+* [33mfb550d9[m Mejorar animación de deslizamiento y corregir visualización de todos los marcadores en móviles
+* [33m953bd36[m Implementar expansión fusionada de pestaña y leyenda en móviles
+* [33mf0a90ff[m Mejorar diseño de leyenda de marcadores para móviles con efectos visuales modernos
+* [33me8feff6[m Corregir funcionalidad de pestaña de leyenda en móviles
+* [33m7ba5758[m Implementar pestaña de leyenda para móviles y optimizar espaciado del mapa
+* [33mf4dcd05[m Optimizar diseño de leyenda y eliminar espacio inferior del mapa en aula.html
+* [33mfe113d7[m Mejoras de responsividad móvil en aula.html
+* [33m81cb081[m Optimización del mapa y refactorización de edificios
+* [33m632310b[m Primera versión de UBICATEC - Sistema de búsqueda de edificios con mapa interactivo, iconos Tabler y diseño moderno

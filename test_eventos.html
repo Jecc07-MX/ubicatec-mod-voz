@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Eventos en Curso</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de Eventos en Curso</h1>
+    
+    <div class="test-section">
+        <h2>📅 Información del Sistema</h2>
+        <div id="system-info"></div>
+        <button onclick="verificarSistema()">Verificar Sistema</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>⏰ Verificación de Tiempo</h2>
+        <div id="time-info"></div>
+        <button onclick="verificarTiempo()">Verificar Tiempo</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>🎯 Eventos Programados</h2>
+        <div id="eventos-info"></div>
+        <button onclick="verificarEventos()">Verificar Eventos</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>🔄 Simulación en Tiempo Real</h2>
+        <div id="simulation-info"></div>
+        <button onclick="iniciarSimulacion()">Iniciar Simulación</button>
+        <button onclick="detenerSimulacion()">Detener Simulación</button>
+    </div>
+
+    <script>
+        // Datos de prueba (mismos que en el sistema real)
+        const jornadasData = {
+            fecha: '2025-09-11',
+            eventos: [
+                { hora: '20:30', titulo: 'Análisis de señales fetales con IA', tipo: 'ponencia' },
+                { hora: '21:00', titulo: 'Seguridad y ética en el uso de la IA', tipo: 'ponencia' },
+                { hora: '21:30', titulo: 'PostgreSQL en la Inteligencia Artificial', tipo: 'ponencia' },
+                { hora: '22:00', titulo: 'IA Generativa en el Desarrollo', tipo: 'ponencia' },
+                { hora: '20:30', titulo: 'Taller de IA', tipo: 'taller' },
+                { hora: '21:00', titulo: 'Taller de AWS', tipo: 'taller' },
+                { hora: '21:30', titulo: 'Taller de Python', tipo: 'taller' },
+                { hora: '22:00', titulo: 'Taller de Product Design', tipo: 'taller' }
+            ]
+        };
+
+        let simulacionInterval;
+
+        function verificarSistema() {
+            const ahora = new Date();
+            const fechaActual = ahora.toISOString().split('T')[0];
+            const horaActual = ahora.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+            
+            const fechaCoincide = fechaActual === jornadasData.fecha;
+            
+            document.getElementById('system-info').innerHTML = `
+                <div class="result ${fechaCoincide ? 'success' : 'error'}">
+                    📅 Fecha del sistema: ${jornadasData.fecha}<br>
+                    📅 Fecha actual: ${fechaActual}<br>
+                    ✅ Fechas coinciden: ${fechaCoincide ? 'SÍ' : 'NO'}
+                </div>
+                <div class="result info">
+                    🕐 Hora actual: ${horaActual}<br>
+                    📊 Total eventos: ${jornadasData.eventos.length}
+                </div>
+            `;
+        }
+
+        function verificarTiempo() {
+            const ahora = new Date();
+            const tiempoActual = ahora.getHours() * 60 + ahora.getMinutes();
+            
+            document.getElementById('time-info').innerHTML = `
+                <div class="result info">
+                    🕐 Hora actual: ${ahora.getHours()}:${ahora.getMinutes().toString().padStart(2, '0')}<br>
+                    ⏱️ Tiempo en minutos: ${tiempoActual}<br>
+                    📊 Tiempo desde medianoche: ${ahora.getHours() * 60 + ahora.getMinutes()} min
+                </div>
+            `;
+        }
+
+        function verificarEventos() {
+            const ahora = new Date();
+            const tiempoActual = ahora.getHours() * 60 + ahora.getMinutes();
+            
+            let html = '<div class="result info">📋 Eventos programados:</div>';
+            
+            jornadasData.eventos.forEach(evento => {
+                const [hora, minutos] = evento.hora.split(':');
+                const tiempoEvento = parseInt(hora) * 60 + parseInt(minutos);
+                const diferencia = tiempoActual - tiempoEvento;
+                const enCurso = diferencia >= 0 && diferencia < 60;
+                
+                html += `
+                    <div class="result ${enCurso ? 'success' : 'info'}">
+                        ${enCurso ? '🟢' : '⚪'} ${evento.hora} - ${evento.titulo}<br>
+                        Tipo: ${evento.tipo}<br>
+                        Estado: ${enCurso ? `EN CURSO (${diferencia} min)` : 'NO ACTIVO'}<br>
+                        Diferencia: ${diferencia} minutos
+                    </div>
+                `;
+            });
+            
+            document.getElementById('eventos-info').innerHTML = html;
+        }
+
+        function iniciarSimulacion() {
+            if (simulacionInterval) {
+                clearInterval(simulacionInterval);
+            }
+            
+            simulacionInterval = setInterval(() => {
+                verificarEventos();
+                document.getElementById('simulation-info').innerHTML = `
+                    <div class="result success">
+                        🔄 Simulación activa - Actualización cada 5 segundos<br>
+                        Última actualización: ${new Date().toLocaleTimeString()}
+                    </div>
+                `;
+            }, 5000);
+            
+            document.getElementById('simulation-info').innerHTML = `
+                <div class="result success">
+                    🚀 Simulación iniciada - Verificando eventos cada 5 segundos
+                </div>
+            `;
+        }
+
+        function detenerSimulacion() {
+            if (simulacionInterval) {
+                clearInterval(simulacionInterval);
+                simulacionInterval = null;
+            }
+            
+            document.getElementById('simulation-info').innerHTML = `
+                <div class="result error">
+                    ⏹️ Simulación detenida
+                </div>
+            `;
+        }
+
+        // Verificación automática al cargar
+        window.onload = function() {
+            verificarSistema();
+            verificarTiempo();
+            verificarEventos();
+        };
+    </script>
+</body>
+</html>

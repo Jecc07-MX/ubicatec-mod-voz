@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Banner - UBICATEC</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Work+Sans:300,400,700" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+        }
+        
+        /* Estilos para el banner de eventos en curso */
+        .eventos-banner {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 12px 0;
+            position: relative;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(40, 167, 69, 0.3);
+        }
+        
+        .evento-indicator {
+            margin-right: 12px;
+            position: relative;
+        }
+        
+        .pulse-dot {
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .evento-info h6 {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        
+        .evento-info small {
+            opacity: 0.9;
+            font-size: 0.85rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+        
+        .col-md-8 {
+            flex: 0 0 66.666667%;
+            max-width: 66.666667%;
+            padding: 0 15px;
+        }
+        
+        .col-md-4 {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+            padding: 0 15px;
+        }
+        
+        .d-flex {
+            display: flex !important;
+        }
+        
+        .align-items-center {
+            align-items: center !important;
+        }
+        
+        .text-right {
+            text-align: right !important;
+        }
+        
+        .mb-0 {
+            margin-bottom: 0 !important;
+        }
+        
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            border: 1px solid transparent;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            border-radius: 0.25rem;
+            text-decoration: none;
+        }
+        
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            border-radius: 0.2rem;
+        }
+        
+        .btn-outline-light {
+            color: #f8f9fa;
+            border-color: #f8f9fa;
+            background-color: transparent;
+        }
+        
+        .btn-outline-light:hover {
+            color: #212529;
+            background-color: #f8f9fa;
+            border-color: #f8f9fa;
+        }
+        
+        .content {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .test-controls {
+            margin: 20px 0;
+        }
+        
+        .test-controls button {
+            margin: 5px;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .test-controls button:hover {
+            background: #0056b3;
+        }
+        
+        .debug-info {
+            background: #e9ecef;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner de eventos en curso -->
+    <div id="eventos-banner" class="eventos-banner" style="display: none;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="d-flex align-items-center">
+                        <div class="evento-indicator">
+                            <div class="pulse-dot"></div>
+                        </div>
+                        <div class="evento-info">
+                            <h6 class="mb-0">🎯 Evento en curso</h6>
+                            <small id="evento-actual-texto"></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-right">
+                    <button class="btn btn-sm btn-outline-light" onclick="window.location.href='jornadas.html'">
+                        Ver detalles
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>🧪 Test del Banner de Eventos</h1>
+        <p>Esta página te permite probar el banner de eventos en curso.</p>
+        
+        <div class="test-controls">
+            <button onclick="mostrarBanner()">Mostrar Banner</button>
+            <button onclick="ocultarBanner()">Ocultar Banner</button>
+            <button onclick="simularEvento()">Simular Evento</button>
+            <button onclick="verificarSistema()">Verificar Sistema</button>
+        </div>
+        
+        <div id="debug-info" class="debug-info">
+            <strong>Debug Info:</strong><br>
+            <span id="debug-text">Haz clic en "Verificar Sistema" para ver la información</span>
+        </div>
+        
+        <h2>Instrucciones:</h2>
+        <ol>
+            <li><strong>Mostrar Banner:</strong> Fuerza la visualización del banner</li>
+            <li><strong>Ocultar Banner:</strong> Oculta el banner</li>
+            <li><strong>Simular Evento:</strong> Muestra un evento simulado</li>
+            <li><strong>Verificar Sistema:</strong> Verifica la lógica del sistema</li>
+        </ol>
+        
+        <h2>¿Qué deberías ver?</h2>
+        <ul>
+            <li>✅ Banner verde con gradiente</li>
+            <li>⚡ Punto blanco pulsante</li>
+            <li>📝 Texto del evento</li>
+            <li>🔗 Botón "Ver detalles"</li>
+        </ul>
+    </div>
+
+    <script>
+        // Datos de las jornadas (mismos que en index.html)
+        const jornadasData = {
+            fecha: '2025-09-11',
+            eventos: [
+                { hora: '20:45', titulo: 'Análisis de señales fetales con IA', tipo: 'ponencia' },
+                { hora: '21:00', titulo: 'Seguridad y ética en el uso de la IA', tipo: 'ponencia' },
+                { hora: '21:30', titulo: 'PostgreSQL en la Inteligencia Artificial', tipo: 'ponencia' },
+                { hora: '22:00', titulo: 'IA Generativa en el Desarrollo', tipo: 'ponencia' },
+                { hora: '20:45', titulo: 'Taller de IA', tipo: 'taller' },
+                { hora: '21:00', titulo: 'Taller de AWS', tipo: 'taller' },
+                { hora: '21:30', titulo: 'Taller de Python', tipo: 'taller' },
+                { hora: '22:00', titulo: 'Taller de Product Design', tipo: 'taller' }
+            ]
+        };
+
+        function verificarEventosEnCurso() {
+            const ahora = new Date();
+            const hoy = ahora.toISOString().split('T')[0];
+            
+            console.log('Verificando eventos...', { hoy, fechaSistema: jornadasData.fecha });
+            
+            // Verificar si es el día de las jornadas
+            if (hoy !== jornadasData.fecha) {
+                return null;
+            }
+
+            let eventoEnCurso = null;
+            let minutosTranscurridos = 0;
+
+            jornadasData.eventos.forEach(evento => {
+                const [hora, minutos] = evento.hora.split(':');
+                const horaEvento = new Date();
+                horaEvento.setHours(parseInt(hora), parseInt(minutos), 0, 0);
+                
+                const diferenciaMs = ahora - horaEvento;
+                const diferenciaMinutos = Math.floor(diferenciaMs / (1000 * 60));
+                
+                console.log(`Evento ${evento.hora}: ${diferenciaMinutos} min de diferencia`);
+                
+                // Si el evento comenzó hace menos de 60 minutos, está en curso
+                if (diferenciaMinutos >= 0 && diferenciaMinutos < 60) {
+                    if (!eventoEnCurso || diferenciaMinutos < minutosTranscurridos) {
+                        eventoEnCurso = evento;
+                        minutosTranscurridos = diferenciaMinutos;
+                    }
+                }
+            });
+
+            return eventoEnCurso ? { ...eventoEnCurso, minutosTranscurridos } : null;
+        }
+
+        function mostrarBanner() {
+            const banner = document.getElementById('eventos-banner');
+            const textoEvento = document.getElementById('evento-actual-texto');
+            
+            textoEvento.textContent = 'Ponencia: Análisis de señales fetales con IA - Comenzó hace 15 min';
+            banner.style.display = 'block';
+            
+            console.log('Banner mostrado manualmente');
+            actualizarDebug('Banner mostrado manualmente');
+        }
+
+        function ocultarBanner() {
+            const banner = document.getElementById('eventos-banner');
+            banner.style.display = 'none';
+            
+            console.log('Banner ocultado manualmente');
+            actualizarDebug('Banner ocultado manualmente');
+        }
+
+        function simularEvento() {
+            const eventoEnCurso = verificarEventosEnCurso();
+            const banner = document.getElementById('eventos-banner');
+            const textoEvento = document.getElementById('evento-actual-texto');
+
+            if (eventoEnCurso) {
+                const tipoTexto = eventoEnCurso.tipo === 'ponencia' ? 'Ponencia' : 'Taller';
+                textoEvento.textContent = `${tipoTexto}: ${eventoEnCurso.titulo} - Comenzó hace ${eventoEnCurso.minutosTranscurridos} min`;
+                banner.style.display = 'block';
+                actualizarDebug(`Evento en curso: ${eventoEnCurso.titulo} (${eventoEnCurso.minutosTranscurridos} min)`);
+            } else {
+                banner.style.display = 'none';
+                actualizarDebug('No hay eventos en curso');
+            }
+        }
+
+        function verificarSistema() {
+            const ahora = new Date();
+            const fechaActual = ahora.toISOString().split('T')[0];
+            const horaActual = ahora.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+            const eventoEnCurso = verificarEventosEnCurso();
+            
+            const info = `
+Fecha actual: ${fechaActual}
+Fecha del sistema: ${jornadasData.fecha}
+Hora actual: ${horaActual}
+¿Fechas coinciden?: ${fechaActual === jornadasData.fecha ? 'SÍ' : 'NO'}
+Evento en curso: ${eventoEnCurso ? eventoEnCurso.titulo : 'NINGUNO'}
+Minutos transcurridos: ${eventoEnCurso ? eventoEnCurso.minutosTranscurridos : 'N/A'}
+            `.trim();
+            
+            actualizarDebug(info);
+            console.log('Sistema verificado:', { fechaActual, horaActual, eventoEnCurso });
+        }
+
+        function actualizarDebug(texto) {
+            document.getElementById('debug-text').innerHTML = texto.replace(/\n/g, '<br>');
+        }
+
+        // Verificación automática al cargar
+        window.onload = function() {
+            console.log('Página cargada, verificando sistema...');
+            verificarSistema();
+            simularEvento();
+        };
+    </script>
+</body>
+</html>

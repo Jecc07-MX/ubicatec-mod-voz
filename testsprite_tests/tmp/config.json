@@ -1,0 +1,16 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000",
+  "executionArgs": {
+    "projectName": "Ubicatec-main",
+    "projectPath": "C:\\Users\\HP\\Desktop\\Ubicatec-main",
+    "testIds": [],
+    "additionalInstruction": "",
+    "envs": {
+      "API_KEY": "sk-user-5W6AaGhdrWQu1-2fdm1ZhNAxQ58c_srzne5VmQgIhMoCIJEnfM-cbwahb1QYUyXQ9LuOshIwrVRIZwChoUgZ1x35IbXl3docC8PWx0V7Ts9usBSgcJTduecYbd0vzkjLZlk"
+    }
+  },
+  "proxy": "http://9def847c-df71-4e59-9f9a-5f44f16ef34b:rhQ04BJG2oUprsl1Y4NLMMVUzpBEjz7q@tun.testsprite.com:8080"
+}

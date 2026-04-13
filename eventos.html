@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Eventos - UBICATEC</title>
+    <meta name="description" content="Eventos y actividades del Instituto Tecnológico de Puebla">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/select2/select2.min.css">
+    <link rel="stylesheet" href="vendor/owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="vendor/lightcase/lightcase.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Work+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/icons-sprite.svg">
+    <script src="https://unpkg.com/@tabler/icons@latest/icons-sprite.js"></script>
+    
+    <style>
+        :root {
+            --primary-color: #1e40af;
+            --secondary-color: #1e3a8a;
+            --accent-color: #3b82f6;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --text-primary: #111827;
+            --text-secondary: #374151;
+            --text-muted: #6b7280;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --bg-tertiary: #f3f4f6;
+            --border-color: #e5e7eb;
+            --border-light: #f3f4f6;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --border-radius: 8px;
+            --border-radius-lg: 12px;
+            --border-radius-xl: 16px;
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Estilos para la navbar con transparencia */
+        #header-navbar {
+            background-color: #042962 !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding-top: 0.5rem !important;
+            padding-bottom: 0.5rem !important;
+        }
+
+        /* Estilos para el texto de los botones de la navbar */
+        #header-navbar .nav-link {
+            font-weight: bold !important;
+            font-family: 'Lato', sans-serif !important;
+            font-size: 15px !important;
+        }
+
+        #header-navbar .dropdown-toggle {
+            font-weight: bold !important;
+            font-family: 'Lato', sans-serif !important;
+            font-size: 15px !important;
+        }
+
+        /* Estilos para el logo de UBICATEC */
+        #header-navbar .navbar-brand img {
+            height: 35px !important;
+        }
+
+        * {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-primary);
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin: 0 0 1rem 0;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                #042962;
+            color: white;
+            padding: 100px 0 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+            margin-top: 20px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: white;
+            line-height: 1.1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* Event Cards */
+        .events-section {
+            padding: 80px 0;
+            background: 
+                radial-gradient(circle at 60% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+                var(--bg-primary);
+            position: relative;
+        }
+
+        .event-card {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            padding: 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 450px;
+        }
+
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Card Flip Animation */
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .event-card {
+            perspective: 1000px;
+        }
+
+        .event-card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+        }
+
+        /* Flip Hint */
+        .flip-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 8px 16px;
+            background: rgba(30, 64, 175, 0.1);
+            border: 1px solid rgba(30, 64, 175, 0.2);
+            border-radius: var(--border-radius);
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .event-card:hover .flip-hint {
+            background: rgba(30, 64, 175, 0.15);
+            border-color: rgba(30, 64, 175, 0.3);
+        }
+
+        .flip-hint i {
+            font-size: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-3px);
+            }
+            60% {
+                transform: translateY(-2px);
+            }
+        }
+
+        /* Back Card Styles */
+        .back-content {
+            padding: 24px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+
+        .back-content::-webkit-scrollbar {
+            display: none; /* WebKit */
+        }
+
+        .back-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .back-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .back-category {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 6px 12px;
+            border-radius: var(--border-radius);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .back-summary {
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        .back-summary h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .back-summary h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 16px 0 8px 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .back-summary p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+
+        .back-details {
+            margin-bottom: 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding: 8px 0;
+        }
+
+        .detail-item i {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .detail-item div {
+            flex: 1;
+        }
+
+        .detail-item strong {
+            display: block;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .detail-item span {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .back-activities {
+            margin-bottom: 24px;
+        }
+
+        .back-activities ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .back-activities li {
+            color: rgba(255, 255, 255, 0.9);
+            padding: 8px 0;
+            position: relative;
+            padding-left: 24px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .back-activities li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .back-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .back-button {
+            flex: 1;
+            padding: 12px 16px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .back-button.primary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .back-button.primary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .back-button.secondary {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .back-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .event-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+        }
+
+        .event-content {
+            padding: 32px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--primary-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: var(--border-radius);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            width: fit-content;
+        }
+
+        .event-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .event-description {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 16px;
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .event-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .event-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .event-meta-item i {
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+
+        .event-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            text-align: center;
+            justify-content: center;
+            margin-top: auto;
+        }
+
+        .event-button:hover {
+            background: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .event-button i {
+            font-size: 1rem;
+        }
+
+        /* Featured Event */
+        .featured-event {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: var(--border-radius-xl);
+            padding: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-event::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .featured-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .featured-badge {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .featured-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .featured-description {
+            font-size: 1.2rem;
+            margin-bottom: 24px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+
+        .featured-meta {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .featured-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+        }
+
+        .featured-meta-item i {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+        }
+
+        .featured-button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 16px 32px;
+            border-radius: var(--border-radius-lg);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .featured-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Floating Mobile Navigation - Estilo Neumórfico - INFERIOR CENTRAL */
+        .floating-mobile-nav {
+            display: none;
+                position: fixed;
+            bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+            z-index: 10000;
+            width: 95%;
+            max-width: 400px;
+        }
+
+        .nav-container {
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.20) 100%);
+            border-radius: 22px;
+            padding: 8px 16px;
+                display: flex;
+            justify-content: space-between;
+                align-items: center;
+            gap: 12px;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.25),
+                0 12px 25px rgba(0, 0, 0, 0.15),
+                0 6px 12px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.3),
+                inset 1px 0 0 rgba(255, 255, 255, 0.5),
+                inset -1px 0 0 rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(25px) saturate(180%) brightness(1.2);
+            -webkit-backdrop-filter: blur(25px) saturate(180%) brightness(1.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+                position: relative;
+                overflow: hidden;
+            }
+
+        .nav-container::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.3) 0%, transparent 60%),
+                linear-gradient(135deg, 
+                    rgba(255, 255, 255, 0.2) 0%, 
+                    rgba(255, 255, 255, 0.1) 30%,
+                    rgba(255, 255, 255, 0.05) 50%,
+                    rgba(255, 255, 255, 0.1) 70%,
+                    rgba(255, 255, 255, 0.15) 100%);
+            border-radius: 22px;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 12px;
+            border-radius: 18px;
+                text-decoration: none;
+            color: rgba(0, 0, 0, 0.85);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            min-width: 56px;
+            cursor: pointer;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .nav-item:hover {
+            color: #000000;
+            transform: translateY(-3px) scale(1.02);
+            text-decoration: none;
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%),
+                rgba(255, 255, 255, 0.01);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.12),
+                0 5px 15px rgba(0, 0, 0, 0.08),
+                0 2px 8px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.15),
+                inset 1px 0 0 rgba(255, 255, 255, 0.2),
+                inset -1px 0 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px) saturate(130%);
+            -webkit-backdrop-filter: blur(15px) saturate(130%);
+        }
+
+        .nav-item:active {
+            transform: translateY(-1px) scale(0.98);
+            transition: all 0.1s ease;
+        }
+
+        .nav-icon {
+            font-size: 20px;
+                margin-bottom: 4px;
+                transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                position: relative;
+            z-index: 3;
+        }
+
+        .nav-item:hover .nav-icon {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+        .nav-label {
+                font-size: 11px;
+                font-weight: 600;
+                text-align: center;
+            white-space: nowrap;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                position: relative;
+            z-index: 3;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Animación de entrada desde abajo */
+        @keyframes slideInUp {
+                from {
+                transform: translateX(-50%) translateY(100px);
+                    opacity: 0;
+                }
+                to {
+                transform: translateX(-50%) translateY(0);
+                    opacity: 1;
+                }
+            }
+
+        /* Responsive Design para móviles */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+                line-height: 1.2;
+                margin-bottom: 15px;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
+            }
+            
+            .hero-section {
+                padding: 60px 0 40px 0;
+            }
+
+            /* Ocultar navbar desktop en móvil */
+            #header-navbar {
+                display: none !important;
+            }
+
+            /* Mostrar navbar flotante en móvil */
+            .floating-mobile-nav {
+                display: block !important;
+                animation: slideInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+
+            /* Ajustes para pantallas muy pequeñas */
+            @media (max-width: 480px) {
+                .floating-mobile-nav {
+                    width: 96%;
+                    max-width: 380px;
+                    bottom: 18px;
+                }
+                
+                .nav-container {
+                    padding: 7px 12px;
+                    border-radius: 20px;
+                    gap: 10px;
+                    backdrop-filter: blur(25px) saturate(180%) brightness(1.2);
+                    -webkit-backdrop-filter: blur(25px) saturate(180%) brightness(1.2);
+                }
+                
+                .nav-item {
+                    padding: 7px 9px;
+                    min-width: 48px;
+                    border-radius: 16px;
+                }
+                
+                .nav-icon {
+                    font-size: 17px;
+                    margin-bottom: 3px;
+                }
+                
+                .nav-label {
+                    font-size: 9.5px;
+                    font-weight: 600;
+                }
+            }
+
+            /* Ajustes para pantallas extra pequeñas */
+            @media (max-width: 375px) {
+                .floating-mobile-nav {
+                    width: 97%;
+                    max-width: 360px;
+                    bottom: 16px;
+                }
+                
+                .nav-container {
+                    padding: 6px 10px;
+                    border-radius: 18px;
+                    gap: 8px;
+                }
+                
+                .nav-item {
+                    padding: 6px 7px;
+                    min-width: 44px;
+                }
+                
+                .nav-icon {
+                    font-size: 15px;
+                }
+                
+                .nav-label {
+                    font-size: 9px;
+                }
+            }
+
+            /* Contenedor principal */
+            .container {
+                padding: 0 15px;
+            }
+            
+            .featured-title {
+                font-size: 1.8rem;
+                line-height: 1.3;
+            }
+            
+            .featured-description {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+            
+            .featured-meta {
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+
+            .featured-meta span {
+                font-size: 0.9rem;
+            }
+            
+            .event-card {
+                margin-bottom: 15px;
+                min-height: 400px;
+            }
+            
+            .event-content {
+                padding: 15px;
+            }
+
+            .event-content h4 {
+                font-size: 1.1rem;
+                line-height: 1.3;
+                margin-bottom: 8px;
+            }
+
+            .event-content p {
+                font-size: 0.9rem;
+                line-height: 1.4;
+                margin-bottom: 10px;
+            }
+
+            .event-meta {
+                font-size: 0.8rem;
+                margin-bottom: 12px;
+            }
+
+            .event-meta span {
+                display: block;
+                margin-bottom: 4px;
+            }
+
+            .btn {
+                font-size: 0.85rem;
+                padding: 10px 16px;
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Grid de eventos */
+            .events-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            /* Mejoras para cards volteables en móvil */
+            .card-inner {
+                height: 100%;
+                min-height: 400px;
+            }
+
+            .card-front, .card-back {
+                height: 100%;
+                min-height: 400px;
+            }
+
+            .back-content {
+                padding: 20px;
+            }
+
+            .back-title {
+                font-size: 1.5rem;
+                margin-bottom: 12px;
+            }
+
+            .back-summary h4 {
+                font-size: 1.1rem;
+                margin-bottom: 10px;
+            }
+
+            .back-summary h5 {
+                font-size: 0.95rem;
+                margin: 12px 0 6px 0;
+            }
+
+            .back-summary p {
+                font-size: 0.85rem;
+                line-height: 1.4;
+                margin-bottom: 12px;
+            }
+
+            .detail-item {
+                margin-bottom: 10px;
+                padding: 6px 0;
+            }
+
+            .detail-item i {
+                font-size: 1rem;
+                margin-top: 2px;
+            }
+
+            .detail-item strong {
+                font-size: 0.9rem;
+                margin-bottom: 3px;
+            }
+
+            .detail-item span {
+                font-size: 0.85rem;
+                line-height: 1.3;
+            }
+
+            .back-activities li {
+                font-size: 0.85rem;
+                padding: 6px 0;
+            }
+
+            .back-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .back-button {
+                padding: 10px 16px;
+                font-size: 0.85rem;
+            }
+
+            .flip-hint {
+                margin-top: 12px;
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Estilos para el mensaje de no hay eventos */
+        .no-events-message {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-xl);
+            padding: 60px 40px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            margin: 40px 0;
+        }
+
+        .no-events-icon {
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 24px;
+            opacity: 0.8;
+        }
+
+        .no-events-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .no-events-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .no-events-social {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            border-radius: var(--border-radius-lg);
+            text-decoration: none;
+            transition: var(--transition);
+            border: 2px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+
+        .social-link:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            text-decoration: none;
+        }
+
+        .social-link.facebook {
+            color: #1877f2;
+            border-color: rgba(24, 119, 242, 0.2);
+        }
+
+        .social-link.facebook:hover {
+            background: rgba(24, 119, 242, 0.05);
+            border-color: rgba(24, 119, 242, 0.3);
+            color: #1877f2;
+        }
+
+        .social-link.instagram {
+            color: #e4405f;
+            border-color: rgba(228, 64, 95, 0.2);
+        }
+
+        .social-link.instagram:hover {
+            background: rgba(228, 64, 95, 0.05);
+            border-color: rgba(228, 64, 95, 0.3);
+            color: #e4405f;
+        }
+
+        .social-link i {
+            font-size: 1.4rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .social-link span {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .hero-section {
+                padding: 50px 0 30px 0;
+            }
+
+            /* Navbar extra pequeña */
+            #header-navbar .navbar-brand img {
+                height: 25px !important;
+            }
+
+            #header-navbar .nav-link {
+                font-size: 13px !important;
+                padding: 0.4rem 0.5rem !important;
+            }
+
+            /* Contenedor más compacto */
+            .container {
+                padding: 0 10px;
+            }
+            
+            .featured-event {
+                padding: 20px;
+            }
+            
+            .featured-title {
+                font-size: 1.5rem;
+            }
+            
+            .featured-description {
+                font-size: 0.9rem;
+            }
+
+            .featured-meta {
+                gap: 8px;
+            }
+
+            .featured-meta span {
+                font-size: 0.8rem;
+            }
+            
+            .event-content {
+                padding: 12px;
+            }
+
+            .event-content h4 {
+                font-size: 1rem;
+            }
+
+            .event-content p {
+                font-size: 0.85rem;
+            }
+
+            .event-meta {
+                font-size: 0.75rem;
+            }
+
+            .btn {
+                font-size: 0.8rem;
+                padding: 8px 12px;
+            }
+
+            /* Estilos móviles para mensaje de no eventos */
+            .no-events-message {
+                padding: 40px 20px;
+                margin: 20px 0;
+            }
+
+            .no-events-icon {
+                font-size: 3rem;
+                margin-bottom: 20px;
+            }
+
+            .no-events-title {
+                font-size: 1.6rem;
+                margin-bottom: 16px;
+            }
+
+            .no-events-description {
+                font-size: 1rem;
+                margin-bottom: 12px;
+            }
+
+            .no-events-social {
+                font-size: 0.9rem;
+                margin-bottom: 24px;
+            }
+
+            .social-links {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .social-link {
+                padding: 12px 16px;
+            }
+
+            .social-link i {
+                font-size: 1.2rem;
+            }
+
+            .social-link span {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav id="header-navbar" class="navbar navbar-expand-lg py-4">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center text-white" href="index.html">
+                <img src="img/navbar.svg" alt="UBICATEC logo" style="height: 35px;"/>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-nav-header" aria-controls="navbar-nav-header" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="lnr lnr-menu"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-nav-header">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="aula.html">Ubica tu Edificio</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="sitiosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Accesos Estudiantes
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="sitiosDropdown">
+                            <a class="dropdown-item" href="eventos.html">Eventos</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="https://puebla.ambar.tecnm.mx/" rel="noopener noreferrer" target="_blank">Ambar</a>
+                            <a class="dropdown-item" href="https://idiomastecpueblacle.blogspot.com/" rel="noopener noreferrer" target="_blank">Coordinacion de lenguas Extranjeras</a>
+                            <a class="dropdown-item" href="https://evadoc.puebla.tecnm.mx/" rel="noopener noreferrer" target="_blank">Sitio Evaluacion Docente</a>
+                            <a class="dropdown-item" href="https://www.facebook.com/DesarrolloAcademicoItPuebla" rel="noopener noreferrer" target="_blank">Desarrollo Academico (Facebook) </a>
+                            <a class="dropdown-item" href="https://www.facebook.com/profile.php?id=100063864618184" rel="noopener noreferrer" target="_blank">Actividades Extraescolares (Facebook) </a>
+                            <a class="dropdown-item" href="https://www.facebook.com/TECNMcampusPuebla" rel="noopener noreferrer" target="_blank">TecNM Puebla (Facebook) </a>
+                            <a class="dropdown-item" href="https://www.facebook.com/cesacampuspuebla" rel="noopener noreferrer" target="_blank">CESA Puebla (Facebook) </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="equipo.html">Equipo de desarrollo</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Floating Mobile Navigation Bar -->
+    <div class="floating-mobile-nav" id="floatingMobileNav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-item" id="navHome">
+                <div class="nav-icon">
+                    <i class="lnr lnr-home"></i>
+                </div>
+                <span class="nav-label">Inicio</span>
+            </a>
+            <a href="aula.html" class="nav-item" id="navAula">
+                <div class="nav-icon">
+                    <i class="lnr lnr-map-marker"></i>
+                </div>
+                <span class="nav-label">Ubica</span>
+            </a>
+            <a href="eventos.html" class="nav-item active" id="navEventos">
+                <div class="nav-icon">
+                    <i class="lnr lnr-calendar-full"></i>
+                </div>
+                <span class="nav-label">Eventos</span>
+            </a>
+            <a href="equipo.html" class="nav-item" id="navEquipo">
+                <div class="nav-icon">
+                    <i class="lnr lnr-users"></i>
+                </div>
+                <span class="nav-label">Equipo</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Eventos</h1>
+                <p class="hero-subtitle">Descubre los eventos y actividades del Instituto Tecnológico de Puebla</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events-section">
+        <div class="container">
+            <!-- Mensaje de no hay eventos disponibles -->
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10 text-center">
+                    <div class="no-events-message">
+                        <div class="no-events-icon">
+                            <i class="fas fa-calendar-times"></i>
+                        </div>
+                        <h2 class="no-events-title">Por el momento no hay eventos disponibles</h2>
+                        <p class="no-events-description">
+                            Estamos trabajando en organizar nuevos eventos para la comunidad del Instituto Tecnológico de Puebla.
+                        </p>
+                        <p class="no-events-social">
+                            Revisa nuestras redes sociales para mantenerte al tanto de algún evento próximo.
+                        </p>
+                        
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/ubica_tec?igsh=anhyaXhkM3BjdXRv" target="_blank" rel="noopener noreferrer" class="social-link instagram">
+                                <i class="fab fa-instagram"></i>
+                                <span>UBICATEC</span>
+                            </a>
+                            <a href="https://www.facebook.com/DesarrolloAcademicoItPuebla" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>Desarrollo Académico</span>
+                            </a>
+                            <a href="https://www.facebook.com/profile.php?id=100063864618184" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>Actividades Extraescolares</span>
+                            </a>
+                            <a href="https://www.facebook.com/TECNMcampusPuebla" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>TecNM Puebla</span>
+                            </a>
+                            <a href="https://www.facebook.com/cesacampuspuebla" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>CESA Puebla</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Events Grid - OCULTO -->
+            <!-- <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="event-card" onclick="flipCard(this)">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <img src="img/Flyers/jornadas.jpg" alt="Jornadas Internacionales de TIC's y Software Libre" class="event-image">
+                        <div class="event-content">
+                            <div class="event-category">Tecnología</div>
+                                    <h3 class="event-title">Jornadas Internacionales de TIC's y Software Libre</h3>
+                            <p class="event-description">
+                                Evento de tecnología e innovación con ponencias, talleres y networking 
+                                para estudiantes y profesionales del área de TI.
+                            </p>
+                                    <div class="event-meta">
+                                        <div class="event-meta-item">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>19-20 Sept 2025</span>
+                                        </div>
+                                        <div class="event-meta-item">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <span>Edificio 36 y 53</span>
+                                        </div>
+                                    </div>
+                                    <div class="flip-hint">
+                                        <i class="fas fa-hand-pointer"></i>
+                                        <span>Haz clic para más detalles</span>
+                        </div>
+                    </div>
+                </div>
+
+                            <div class="card-back">
+                                <div class="back-content">
+                                    <div class="back-header">
+                                        <h3 class="back-title">Jornadas Internacionales de TIC's y Software Libre</h3>
+                                        <div class="back-category">Tecnología</div>
+                                    </div>
+                                    
+                                    <div class="back-summary">
+                                        <h4>Resumen del Evento</h4>
+                                        <p>Las Jornadas Internacionales de TIC's y Software Libre son un evento anual que reúne a la comunidad tecnológica del Instituto Tecnológico de Puebla para compartir conocimientos, experiencias y las últimas tendencias en Tecnologías de la Información y Comunicación, con especial énfasis en el software libre y de código abierto.</p>
+                                        
+                                        <div class="back-details">
+                                            <div class="detail-item">
+                                                <i class="fas fa-calendar-alt"></i>
+                                                <div>
+                                                    <strong>Fechas:</strong>
+                                                    <span>19-20 de Septiembre 2025</span>
+                                                </div>
+                                            </div>
+                                            <div class="detail-item">
+                                                <i class="fas fa-clock"></i>
+                                                <div>
+                                                    <strong>Horario:</strong>
+                                                    <span>9:00 - 19:00 hrs</span>
+                                                </div>
+                                            </div>
+                                            <div class="detail-item">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                <div>
+                                                    <strong>Ubicación:</strong>
+                                                    <span>Edificio 36 (Talleres) y Auditorio 1 y 2 Edificio 53 (Ponencias)</span>
+                                                </div>
+                                            </div>
+                                            <div class="detail-item">
+                                                <i class="fas fa-users"></i>
+                                                <div>
+                                                    <strong>Dirigido a:</strong>
+                                                    <span>Toda la comunidad del Instituto Tecnológico de Puebla</span>
+                                                </div>
+                                            </div>
+                </div>
+
+                                        <div class="back-activities">
+                                            <h5>Actividades Incluidas:</h5>
+                                            <ul>
+                                                <li>Ponencias magistrales</li>
+                                                <li>Talleres prácticos</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="back-actions">
+                                        <a href="jornadas.html" class="back-button primary">
+                                            <i class="fas fa-info-circle"></i>
+                                            Ver Detalles Completos
+                                        </a>
+                                        <button class="back-button secondary" onclick="flipBack(this.closest('.event-card'), event)">
+                                            <i class="fas fa-undo"></i>
+                                            Volver
+                                        </button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="vendor/bootstrap/popper.min.js"></script>
+    <script src="vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/owlcarousel/owl.carousel.min.js"></script>
+    <script src="vendor/stellar/jquery.stellar.js"></script>
+    <script src="vendor/isotope/isotope.min.js"></script>
+    <script src="vendor/lightcase/lightcase.js"></script>
+    <script src="vendor/waypoints/waypoint.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js/app.min.js"></script>
+
+    <script>
+        // Inicializar AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Smooth scroll para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Función para voltear la tarjeta (solo si no está volteada)
+        function flipCard(card) {
+            // Solo voltear si la card no está ya volteada
+            if (!card.classList.contains('flipped')) {
+                card.classList.add('flipped');
+            }
+        }
+
+        // Función para volver al frente de la tarjeta
+        function flipBack(card, event) {
+            event.stopPropagation(); // Prevenir la propagación del evento
+            card.classList.remove('flipped');
+        }
+
+        // Prevenir el volteo accidental en dispositivos táctiles
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        document.querySelectorAll('.event-card').forEach(card => {
+            card.addEventListener('touchstart', function(e) {
+                touchStartY = e.changedTouches[0].screenY;
+            });
+
+            card.addEventListener('touchend', function(e) {
+                touchEndY = e.changedTouches[0].screenY;
+                handleSwipe(card);
+            });
+        });
+
+        function handleSwipe(card) {
+            const swipeThreshold = 50;
+            const diff = touchStartY - touchEndY;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe hacia arriba - voltear tarjeta
+                    card.classList.add('flipped');
+                } else {
+                    // Swipe hacia abajo - volver al frente
+                    card.classList.remove('flipped');
+                }
+            }
+        }
+
+        // Agregar efecto de sonido opcional (comentado por defecto)
+        function playFlipSound() {
+            // Descomenta las siguientes líneas si quieres agregar un sonido de volteo
+            // const audio = new Audio('sounds/flip.mp3');
+            // audio.volume = 0.3;
+            // audio.play().catch(e => console.log('No se pudo reproducir el sonido'));
+        }
+    </script>
+
+    <!-- JavaScript para Floating Mobile Navigation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Solo ejecutar en dispositivos móviles
+            if (window.innerWidth <= 768) {
+                const navItems = document.querySelectorAll('.floating-mobile-nav .nav-item');
+                let activeItem = null;
+
+                // Función para establecer item activo
+                function setActiveNavItem(item) {
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    if (item) {
+                        item.classList.add('active');
+                    }
+                }
+
+                // Detectar página actual
+                function setCurrentPageActive() {
+                    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                    let activeElement = null;
+
+                    switch(currentPage) {
+                        case 'index.html':
+                        case '':
+                            activeElement = document.getElementById('navHome');
+                            break;
+                        case 'aula.html':
+                            activeElement = document.getElementById('navAula');
+                            break;
+                        case 'eventos.html':
+                            activeElement = document.getElementById('navEventos');
+                            break;
+                        case 'equipo.html':
+                            activeElement = document.getElementById('navEquipo');
+                            break;
+                        default:
+                            activeElement = document.getElementById('navHome');
+                    }
+
+                    if (activeElement) {
+                        setActiveNavItem(activeElement);
+                    }
+                }
+
+                // Efectos táctiles para móviles
+                navItems.forEach(item => {
+                    let isPressed = false;
+                    let pressTimer = null;
+
+                    item.addEventListener('touchstart', function(e) {
+                        isPressed = true;
+                        
+                        this.style.transform = 'translateY(-1px) scale(0.95)';
+                        this.style.transition = 'all 0.1s ease';
+                        
+                        pressTimer = setTimeout(() => {
+                            if (isPressed) {
+                                this.style.transform = 'translateY(-2px)';
+                                this.style.transition = 'all 0.3s ease';
+                            }
+                        }, 100);
+                    }, { passive: true });
+
+                    item.addEventListener('touchend', function(e) {
+                        isPressed = false;
+                        clearTimeout(pressTimer);
+                        
+                        setTimeout(() => {
+                            this.style.transform = '';
+                            this.style.transition = 'all 0.3s ease';
+                        }, 50);
+                    }, { passive: true });
+
+                    item.addEventListener('touchcancel', function(e) {
+                        isPressed = false;
+                        clearTimeout(pressTimer);
+                        
+                        this.style.transform = '';
+                        this.style.transition = 'all 0.3s ease';
+                    }, { passive: true });
+
+                    item.addEventListener('click', function(e) {
+                        if (!this.classList.contains('active')) {
+                            setActiveNavItem(this);
+                        }
+                    });
+                });
+
+                // Establecer item activo al cargar
+                setCurrentPageActive();
+
+                // Manejar cambios de orientación
+                window.addEventListener('orientationchange', function() {
+                    setTimeout(setCurrentPageActive, 100);
+                });
+            }
+
+            // Manejar cambios de tamaño de ventana
+            window.addEventListener('resize', function() {
+                const floatingNav = document.getElementById('floatingMobileNav');
+                const desktopNav = document.getElementById('header-navbar');
+                
+                if (window.innerWidth <= 768) {
+                    if (floatingNav) floatingNav.style.display = 'block';
+                    if (desktopNav) desktopNav.style.display = 'none';
+                } else {
+                    if (floatingNav) floatingNav.style.display = 'none';
+                    if (desktopNav) desktopNav.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

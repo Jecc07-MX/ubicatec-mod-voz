@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.ricardopolanco.ubicatec",
+    "sha256_cert_fingerprints":
+    ["92:7B:07:1C:2C:B6:E9:0A:F0:61:8E:C7:F0:25:0D:17:99:12:A6:A1:27:59:1D:47:60:F2:18:BF:B4:50:AF:F4"]
+  }
+}]

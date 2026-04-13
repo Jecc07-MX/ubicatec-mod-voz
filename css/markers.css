@@ -1,0 +1,247 @@
+/* Estilos para marcadores personalizados del mapa */
+
+/* Marcadores base */
+.custom-marker {
+    background: white;
+    border: 3px solid;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Animación de hover removida */
+
+/* Marcadores por tipo de edificio */
+
+/* Aulas - Azul */
+.marker-aula {
+    background: #3498db;
+    border-color: #2980b9;
+    color: white;
+}
+
+.marker-aula::before {
+    content: "";
+    font-size: 16px;
+}
+
+/* Laboratorios - Verde */
+.marker-laboratorio {
+    background: #27ae60;
+    border-color: #229954;
+    color: white;
+}
+
+.marker-laboratorio::before {
+    content: "";
+    font-size: 16px;
+}
+
+/* Administrativo - Naranja */
+.marker-administrativo {
+    background: #e67e22;
+    border-color: #d35400;
+    color: white;
+}
+
+.marker-administrativo::before {
+    content: "";
+    font-size: 16px;
+}
+
+/* Baños - Morado */
+.marker-baño {
+    background: #9b59b6;
+    border-color: #8e44ad;
+    color: white;
+}
+
+.marker-baño::before {
+    content: "";
+    font-size: 16px;
+}
+
+/* Accesos - Rojo */
+.marker-acceso {
+    background: #e74c3c;
+    border-color: #c0392b;
+    color: white;
+}
+
+.marker-acceso::before {
+    content: "";
+    font-size: 16px;
+}
+
+/* Otros - Gris */
+.marker-otro {
+    background: #95a5a6;
+    border-color: #7f8c8d;
+    color: white;
+}
+
+.marker-otro::before {
+    content: "";
+    font-size: 16px;
+}
+
+/* Marcadores especiales con formas diferentes */
+
+/* Marcador de destino - Estrella */
+.marker-destino {
+    background: #f39c12;
+    border-color: #e67e22;
+    color: white;
+    border-radius: 0;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    width: 35px;
+    height: 35px;
+}
+
+.marker-destino::before {
+    content: "";
+    font-size: 18px;
+}
+
+/* Marcador de usuario - Círculo con punto */
+.marker-usuario {
+    background: #2ecc71;
+    border-color: #27ae60;
+    color: white;
+    position: relative;
+}
+
+.marker-usuario::before {
+    content: "";
+    font-size: 16px;
+}
+
+.marker-usuario::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #27ae60;
+}
+
+/* Animaciones */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.marker-pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Tooltips personalizados */
+.leaflet-tooltip {
+    background: rgba(0, 0, 0, 0.8) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 6px !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    padding: 8px 12px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+}
+
+.leaflet-tooltip-top::before {
+    border-top-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.leaflet-tooltip-bottom::before {
+    border-bottom-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.leaflet-tooltip-left::before {
+    border-left-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.leaflet-tooltip-right::before {
+    border-right-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Efectos hover para marcadores - removidos */
+
+/* Leyenda de colores */
+.leyenda-marcadores {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    z-index: 1000;
+    font-size: 12px;
+    max-width: 200px;
+}
+
+.leyenda-marcadores h4 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.leyenda-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.leyenda-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 8px;
+    border: 2px solid;
+}
+
+.leyenda-texto {
+    color: #666;
+    font-size: 11px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .custom-marker {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+    }
+    
+    .custom-marker::before {
+        font-size: 14px;
+    }
+    
+    .marker-destino {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .marker-destino::before {
+        font-size: 16px;
+    }
+}

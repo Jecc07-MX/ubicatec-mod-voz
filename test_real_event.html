@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Evento Real - UBICATEC</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .status-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .countdown {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .event-info {
+            background: rgba(40, 167, 69, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .instructions {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .debug-info {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 14px;
+            text-align: left;
+        }
+        
+        button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .success { color: #28a745; }
+        .warning { color: #ffc107; }
+        .info { color: #17a2b8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test Evento Real</h1>
+        <p>Probando el funcionamiento real del sistema con un evento programado</p>
+        
+        <div class="event-info">
+            <h3>📅 Evento Programado</h3>
+            <p><strong>Nombre:</strong> Evento de Prueba</p>
+            <p><strong>Hora:</strong> 21:15 hrs</p>
+            <p><strong>Tipo:</strong> Ponencia</p>
+            <p><strong>Fecha:</strong> 2025-09-11</p>
+        </div>
+        
+        <div class="status-card">
+            <h3>⏰ Estado del Sistema</h3>
+            <div class="countdown" id="countdown">Cargando...</div>
+            <p id="status-text">Verificando sistema...</p>
+        </div>
+        
+        <div class="debug-info">
+            <strong>Información de Debug:</strong><br>
+            <span id="debug-info">Cargando...</span>
+        </div>
+        
+        <div class="instructions">
+            <h3>📋 Instrucciones</h3>
+            <ol>
+                <li><strong>Observa el countdown:</strong> Muestra cuánto tiempo falta para el evento</li>
+                <li><strong>Espera a las 21:15:</strong> El banner debería aparecer automáticamente</li>
+                <li><strong>Verifica el banner:</strong> Debe mostrar "Evento de Prueba" y tiempo transcurrido</li>
+                <li><strong>Prueba en index.html:</strong> Ve a <a href="index.html" style="color: #ffc107;">index.html</a> para ver el banner real</li>
+            </ol>
+        </div>
+        
+        <div class="status-card">
+            <h3>🎯 Controles de Prueba</h3>
+            <button onclick="verificarSistema()">Verificar Sistema</button>
+            <button onclick="simularEvento()">Simular Evento Ahora</button>
+            <button onclick="window.open('index.html', '_blank')">Abrir Index</button>
+        </div>
+    </div>
+
+    <script>
+        // Datos del evento real
+        const eventoReal = {
+            fecha: '2025-09-11',
+            hora: '21:15',
+            titulo: 'Evento de Prueba',
+            tipo: 'ponencia'
+        };
+
+        function actualizarCountdown() {
+            const ahora = new Date();
+            const horaActual = ahora.getHours();
+            const minutoActual = ahora.getMinutes();
+            const tiempoActual = horaActual * 60 + minutoActual;
+            
+            const [horaEvento, minutoEvento] = eventoReal.hora.split(':');
+            const tiempoEvento = parseInt(horaEvento) * 60 + parseInt(minutoEvento);
+            
+            const diferencia = tiempoEvento - tiempoActual;
+            
+            const countdownElement = document.getElementById('countdown');
+            const statusElement = document.getElementById('status-text');
+            
+            if (diferencia > 0) {
+                const horas = Math.floor(diferencia / 60);
+                const minutos = diferencia % 60;
+                countdownElement.textContent = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}`;
+                countdownElement.className = 'countdown warning';
+                statusElement.innerHTML = '⏳ <strong>Esperando evento...</strong><br>El banner aparecerá cuando comience el evento';
+            } else if (diferencia >= -60) {
+                const minutosTranscurridos = Math.abs(diferencia);
+                countdownElement.textContent = `${minutosTranscurridos} min`;
+                countdownElement.className = 'countdown success';
+                statusElement.innerHTML = '✅ <strong>Evento en curso!</strong><br>El banner debería estar visible';
+            } else {
+                countdownElement.textContent = 'Finalizado';
+                countdownElement.className = 'countdown info';
+                statusElement.innerHTML = 'ℹ️ <strong>Evento finalizado</strong><br>El banner ya no debería estar visible';
+            }
+        }
+
+        function actualizarDebugInfo() {
+            const ahora = new Date();
+            const fechaActual = ahora.toISOString().split('T')[0];
+            const horaActual = ahora.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+            
+            const debugInfo = `
+Fecha actual: ${fechaActual}<br>
+Hora actual: ${horaActual}<br>
+Fecha del evento: ${eventoReal.fecha}<br>
+Hora del evento: ${eventoReal.hora}<br>
+¿Fechas coinciden?: ${fechaActual === eventoReal.fecha ? 'SÍ' : 'NO'}<br>
+Tiempo actual (min): ${ahora.getHours() * 60 + ahora.getMinutes()}<br>
+Tiempo evento (min): ${parseInt(eventoReal.hora.split(':')[0]) * 60 + parseInt(eventoReal.hora.split(':')[1])}<br>
+Diferencia: ${(parseInt(eventoReal.hora.split(':')[0]) * 60 + parseInt(eventoReal.hora.split(':')[1])) - (ahora.getHours() * 60 + ahora.getMinutes())} min
+            `.trim();
+            
+            document.getElementById('debug-info').innerHTML = debugInfo;
+        }
+
+        function verificarSistema() {
+            actualizarCountdown();
+            actualizarDebugInfo();
+            
+            // Verificar si el banner debería estar visible
+            const ahora = new Date();
+            const tiempoActual = ahora.getHours() * 60 + ahora.getMinutes();
+            const tiempoEvento = parseInt(eventoReal.hora.split(':')[0]) * 60 + parseInt(eventoReal.hora.split(':')[1]);
+            const diferencia = tiempoActual - tiempoEvento;
+            
+            if (diferencia >= 0 && diferencia < 60) {
+                alert('✅ El banner debería estar visible ahora. Ve a index.html para verlo.');
+            } else if (diferencia < 0) {
+                alert(`⏳ El evento comenzará en ${Math.abs(diferencia)} minutos.`);
+            } else {
+                alert('ℹ️ El evento ya finalizó hace más de 1 hora.');
+            }
+        }
+
+        function simularEvento() {
+            if (confirm('¿Simular que el evento está en curso ahora? Esto es solo para pruebas.')) {
+                alert('🎯 Simulando evento en curso. Ve a index.html para ver el banner.');
+            }
+        }
+
+        // Actualizar cada segundo
+        setInterval(() => {
+            actualizarCountdown();
+            actualizarDebugInfo();
+        }, 1000);
+
+        // Inicializar
+        window.onload = function() {
+            actualizarCountdown();
+            actualizarDebugInfo();
+        };
+    </script>
+</body>
+</html>
